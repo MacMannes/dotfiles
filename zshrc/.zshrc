@@ -1,9 +1,10 @@
 bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
 
-alias ls='eza --icons'
-
 PATH=/opt/homebrew/bin/:$PATH
+
+alias ls='eza --icons'
+eval "$(zoxide init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
