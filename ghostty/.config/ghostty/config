@@ -1,0 +1,6 @@
+font-family = "Jetbrains MonoNL Nerd Font Mono"
+font-size = "14"
+
+theme = jb-dark
+
+keybind = unconsumed:cmd+w=text:\x1bw 
