@@ -1,7 +1,7 @@
 bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
 
-alias ls='colorls'
+alias ls='eza --icons'
 
 PATH=/opt/homebrew/bin/:$PATH
 
