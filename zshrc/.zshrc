@@ -9,11 +9,11 @@ eval "$(zoxide init zsh)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-nvm use 22 --silent
+[ -s "$NVM_DIR" ] && nvm use 22 --silent
 
 [ -s "$HOME/.npm-tokens.sh" ] && \. "$HOME/.npm-tokens.sh"
 
-source "$HOME/.sdkman/bin/sdkman-init.sh"
+[ -s "$HOME/.sdkman" ] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 export HOMEBREW_NO_ENV_HINT=1
 
