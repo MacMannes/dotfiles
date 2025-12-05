@@ -194,6 +194,11 @@ on-mode-changed = []
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
 
+    cmd-alt-left = ['join-with left', 'mode main']
+    cmd-alt-down = ['join-with down', 'mode main']
+    cmd-alt-up = ['join-with up', 'mode main']
+    cmd-alt-right = ['join-with right', 'mode main']
+
 # Move apps directly to a workspace
 # Use 'aerospace list-apps' to get the app-id
 [[on-window-detected]]
