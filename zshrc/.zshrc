@@ -1,3 +1,5 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+
 bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
 
