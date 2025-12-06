@@ -5,6 +5,10 @@ bindkey "^[^[[D" backward-word
 
 PATH=/opt/homebrew/bin/:$PATH
 
+export ZSH="$HOME/.oh-my-zsh"
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions z)
+source $ZSH/oh-my-zsh.sh
+
 alias ls='eza --icons'
 eval "$(zoxide init zsh)"
 
