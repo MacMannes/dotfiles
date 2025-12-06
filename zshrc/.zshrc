@@ -33,4 +33,4 @@ alias vi=nvim
 # Created by `pipx` on 2025-03-30 13:49:32
 export PATH="$PATH:/Users/andre/.local/bin"
 
-alias lg='lazygit'
+alias gg='lazygit'
