@@ -1,13 +1,16 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 
+PATH=/opt/homebrew/bin/:$PATH
+
+export HOMEBREW_PREFIX="$(brew --prefix)"
+
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
 
-PATH=/opt/homebrew/bin/:$PATH
-
-export ZSH="$HOME/.oh-my-zsh"
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions z)
-source $ZSH/oh-my-zsh.sh
 
 alias ls='eza --icons'
 eval "$(zoxide init zsh)"
