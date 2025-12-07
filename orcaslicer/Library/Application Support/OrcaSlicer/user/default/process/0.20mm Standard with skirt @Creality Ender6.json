@@ -1,0 +1,23 @@
+{
+    "brim_object_gap": "0.12",
+    "brim_type": "outer_only",
+    "brim_width": "4",
+    "from": "User",
+    "inherits": "0.20mm Standard @Creality Ender6",
+    "initial_layer_infill_speed": "40",
+    "inner_wall_line_width": "0.4",
+    "inner_wall_speed": "60",
+    "is_custom_defined": "0",
+    "line_width": "0.4",
+    "name": "0.20mm Standard with skirt @Creality Ender6",
+    "outer_wall_line_width": "0.4",
+    "outer_wall_speed": "60",
+    "print_settings_id": "0.20mm Standard with skirt @Creality Ender6",
+    "sparse_infill_density": "25%",
+    "sparse_infill_line_width": "0.4",
+    "support_on_build_plate_only": "1",
+    "support_style": "default",
+    "support_type": "tree(auto)",
+    "version": "1.7.0.0",
+    "wall_loops": "3"
+}

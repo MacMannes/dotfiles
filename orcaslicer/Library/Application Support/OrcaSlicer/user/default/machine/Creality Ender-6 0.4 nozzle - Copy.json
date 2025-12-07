@@ -1,0 +1,8 @@
+{
+    "from": "User",
+    "inherits": "Creality Ender-6 0.4 nozzle",
+    "is_custom_defined": "0",
+    "name": "Creality Ender-6 0.4 nozzle - Copy",
+    "printer_settings_id": "Creality Ender-6 0.4 nozzle - Copy",
+    "version": "2.1.1.0"
+}

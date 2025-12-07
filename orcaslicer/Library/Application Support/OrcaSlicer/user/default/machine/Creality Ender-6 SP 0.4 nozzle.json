@@ -1,0 +1,35 @@
+{
+    "before_layer_change_gcode": ";BEFORE_LAYER_CHANGE\n;[layer_z]\nG92 E0",
+    "deretraction_speed": [
+        "5"
+    ],
+    "from": "User",
+    "gcode_flavor": "klipper",
+    "inherits": "Creality Ender-6 0.4 nozzle",
+    "is_custom_defined": "0",
+    "machine_end_gcode": "END_PRINT\n",
+    "machine_start_gcode": "START_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single]\n",
+    "name": "Creality Ender-6 SP 0.4 nozzle",
+    "nozzle_type": "brass",
+    "print_host": "http://spad-1964.local",
+    "print_host_webui": "http://spad-1964.local/#/",
+    "printable_area": [
+        "0x0",
+        "268x0",
+        "268x247",
+        "0x247"
+    ],
+    "printer_settings_id": "Creality Ender-6 SP 0.4 nozzle",
+    "purge_in_prime_tower": "0",
+    "retraction_length": [
+        "0.5"
+    ],
+    "retraction_speed": [
+        "5"
+    ],
+    "single_extruder_multi_material": "0",
+    "version": "1.7.0.0",
+    "z_hop": [
+        "0"
+    ]
+}

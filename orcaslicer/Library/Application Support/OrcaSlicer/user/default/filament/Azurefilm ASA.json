@@ -1,0 +1,22 @@
+{
+    "filament_cost": [
+        "23.78"
+    ],
+    "filament_settings_id": [
+        "Azurefilm ASA"
+    ],
+    "filament_vendor": [
+        "Azurefilm"
+    ],
+    "from": "User",
+    "hot_plate_temp": [
+        "95"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "95"
+    ],
+    "inherits": "Creality Generic ASA",
+    "is_custom_defined": "0",
+    "name": "Azurefilm ASA",
+    "version": "1.8.0.0"
+}

@@ -1,0 +1,9 @@
+{
+    "from": "User",
+    "inherits": "MyKlipper 0.4 nozzle",
+    "is_custom_defined": "0",
+    "name": "Klipper 0.4 nozzle",
+    "printable_height": "400",
+    "printer_settings_id": "Klipper 0.4 nozzle",
+    "version": "1.6.1.0"
+}

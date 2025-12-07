@@ -1,0 +1,22 @@
+{
+    "bottom_shell_layers": "1",
+    "brim_type": "no_brim",
+    "from": "User",
+    "gap_infill_speed": "70",
+    "inherits": "0.20mm Standard @Creality Ender6",
+    "initial_layer_print_height": "0.32",
+    "inner_wall_speed": "100",
+    "internal_solid_infill_speed": "110",
+    "is_custom_defined": "0",
+    "layer_height": "0.32",
+    "name": "Gridfinity Traced Bins",
+    "outer_wall_speed": "100",
+    "print_settings_id": "Gridfinity Traced Bins",
+    "sparse_infill_density": "5%",
+    "sparse_infill_pattern": "rectilinear",
+    "sparse_infill_speed": "130",
+    "support_speed": "90",
+    "top_shell_layers": "4",
+    "top_surface_speed": "70",
+    "version": "2.0.2.0"
+}

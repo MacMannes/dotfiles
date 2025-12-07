@@ -1,0 +1,10 @@
+{
+    "filament_settings_id": [
+        "ASA"
+    ],
+    "from": "User",
+    "inherits": "My Generic ASA",
+    "is_custom_defined": "0",
+    "name": "ASA",
+    "version": "1.6.1.0"
+}

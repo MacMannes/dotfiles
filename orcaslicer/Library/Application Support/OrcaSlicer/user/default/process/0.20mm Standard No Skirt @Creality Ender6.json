@@ -1,0 +1,13 @@
+{
+    "brim_type": "no_brim",
+    "enable_support": "1",
+    "from": "User",
+    "inherits": "0.20mm Standard @Creality Ender6",
+    "is_custom_defined": "0",
+    "name": "0.20mm Standard No Skirt @Creality Ender6",
+    "print_settings_id": "0.20mm Standard No Skirt @Creality Ender6",
+    "support_on_build_plate_only": "1",
+    "support_style": "default",
+    "support_type": "tree(auto)",
+    "version": "2.0.2.0"
+}

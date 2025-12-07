@@ -1,0 +1,19 @@
+{
+    "filament_settings_id": [
+        "Azurefilm PLA"
+    ],
+    "from": "User",
+    "inherits": "Creality Generic PLA",
+    "is_custom_defined": "0",
+    "name": "Azurefilm PLA",
+    "nozzle_temperature": [
+        "210"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "210"
+    ],
+    "reduce_fan_stop_start_freq": [
+        "0"
+    ],
+    "version": "1.7.0.0"
+}

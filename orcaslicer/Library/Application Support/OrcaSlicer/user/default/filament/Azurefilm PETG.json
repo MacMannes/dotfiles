@@ -1,0 +1,25 @@
+{
+    "filament_cost": [
+        "22"
+    ],
+    "filament_settings_id": [
+        "Azurefilm PETG"
+    ],
+    "filament_vendor": [
+        "Azurefilm"
+    ],
+    "from": "User",
+    "inherits": "Creality Generic PETG",
+    "is_custom_defined": "0",
+    "name": "Azurefilm PETG",
+    "nozzle_temperature": [
+        "235"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "235"
+    ],
+    "reduce_fan_stop_start_freq": [
+        "0"
+    ],
+    "version": "1.7.0.0"
+}

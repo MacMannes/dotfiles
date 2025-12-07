@@ -1,0 +1,16 @@
+{
+    "enable_support": "1",
+    "from": "User",
+    "inherits": "0.20mm Standard @Creality Ender6",
+    "is_custom_defined": "0",
+    "name": "ARTME-3D",
+    "print_settings_id": "ARTME-3D",
+    "sparse_infill_density": "40%",
+    "support_on_build_plate_only": "1",
+    "support_style": "default",
+    "support_type": "tree(manual)",
+    "top_shell_layers": "5",
+    "tree_support_branch_distance_organic": "4",
+    "version": "1.8.0.0",
+    "wall_loops": "5"
+}

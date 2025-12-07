@@ -1,0 +1,12 @@
+{
+    "from": "User",
+    "inherits": "0.16mm Optimal @Creality Ender6",
+    "inner_wall_line_width": "0.4",
+    "is_custom_defined": "0",
+    "line_width": "0.4",
+    "name": "0.16mm Optimal @Ender6 SP",
+    "outer_wall_line_width": "0.4",
+    "print_settings_id": "0.16mm Optimal @Ender6 SP",
+    "sparse_infill_line_width": "0.4",
+    "version": "1.7.0.0"
+}
