@@ -119,10 +119,10 @@ on-mode-changed = []
     alt-k = 'focus up'
     alt-l = 'focus right'
 
-    alt-left = 'focus left'
-    alt-down = 'focus down'
-    alt-up = 'focus up'
-    alt-right = 'focus right'
+    cmd-alt-left = 'focus left'
+    cmd-alt-down = 'focus down'
+    cmd-alt-up = 'focus up'
+    cmd-alt-right = 'focus right'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
     alt-shift-h = 'move left'
@@ -130,10 +130,10 @@ on-mode-changed = []
     alt-shift-k = 'move up'
     alt-shift-l = 'move right'
 
-    alt-shift-left = 'move left'
-    alt-shift-down = 'move down'
-    alt-shift-up = 'move up'
-    alt-shift-right = 'move right'
+    ctrl-alt-left = 'move left'
+    ctrl-alt-down = 'move down'
+    ctrl-alt-up = 'move up'
+    ctrl-alt-right = 'move right'
 
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#resize
