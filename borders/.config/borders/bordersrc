@@ -11,7 +11,7 @@ transparent="0x00000000"
 
 options=(
     style=round
-    width=5.0
+    width=6.0
     hidpi=on
     active_color="$orange"
     inactive_color="$dark_gray"
