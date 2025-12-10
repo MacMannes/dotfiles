@@ -2,7 +2,15 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 PATH=/opt/homebrew/bin/:$PATH
 
-export HOMEBREW_PREFIX="$(brew --prefix)"
+# Cache Homebrew prefix across shells
+if [[ -f ~/.cache/brew_prefix ]]; then
+  export HOMEBREW_PREFIX="$(< ~/.cache/brew_prefix)"
+else
+  mkdir -p ~/.cache
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  echo "$HOMEBREW_PREFIX" > ~/.cache/brew_prefix
+  export HOMEBREW_PREFIX
+fi
 
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
