@@ -7,7 +7,7 @@ if command -v eza &>/dev/null; then
     alias ls='eza -lh --group-directories-first --icons=auto'
     alias lsa='ls -a'
     alias lrt='ls --sort newest --icons'
-    alias lt='eza --tree --level=2 --long --icons --git'
+    alias lt='eza --tree --level=2 --long --icons --git --git-ignore'
     alias lta='lt -a'
 fi
 
