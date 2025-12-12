@@ -19,8 +19,9 @@ source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
 
+bindkey              '^I' menu-select
+bindkey "$terminfo[kcbt]" menu-select
 
-alias ls='eza --icons'
 eval "$(zoxide init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
@@ -36,9 +37,7 @@ eval "$(starship init zsh)"
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/andre/.lmstudio/bin"
 
-alias vi=nvim
-
 # Created by `pipx` on 2025-03-30 13:49:32
 export PATH="$PATH:/Users/andre/.local/bin"
 
-alias gg='lazygit'
+source ~/.aliases.sh
