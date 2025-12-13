@@ -2,7 +2,8 @@
 
 dark_gray="0xff414550"
 light_gray="0xffe2e2e3"
-orange="0xffd65d0e'"
+orange="0xffd65d0e"
+light_blue="0xff33ccffee"
 
 # Colors taken from tokyonight theme
 red="0xfff7768e"
