@@ -17,7 +17,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "f12",
+                                        "key_code": "f13",
                                         "modifiers": ["command"]
                                     }
                                 ],
@@ -33,7 +33,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "f12",
+                                        "key_code": "f13",
                                         "modifiers": ["command"]
                                     }
                                 ],
