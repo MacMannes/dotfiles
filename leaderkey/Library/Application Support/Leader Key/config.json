@@ -39,6 +39,19 @@
       "key" : "r",
       "label" : "Radio",
       "type" : "group"
+    },
+    {
+      "actions" : [
+        {
+          "key" : "f",
+          "label" : "toggle (F)ullscreen",
+          "type" : "command",
+          "value" : "/opt/homebrew/bin/aerospace fullscreen"
+        }
+      ],
+      "key" : "w",
+      "label" : "Window",
+      "type" : "group"
     }
   ],
   "type" : "group"
