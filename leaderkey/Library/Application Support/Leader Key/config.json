@@ -43,8 +43,8 @@
     {
       "actions" : [
         {
-          "key" : "f",
-          "label" : "toggle (F)ullscreen",
+          "key" : "m",
+          "label" : "Maximize window",
           "type" : "command",
           "value" : "/opt/homebrew/bin/aerospace fullscreen"
         }
