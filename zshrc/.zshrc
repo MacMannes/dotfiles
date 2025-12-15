@@ -1,6 +1,5 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 
-PATH=/opt/homebrew/bin/:$PATH
 
 # Cache Homebrew prefix across shells
 if [[ -f ~/.cache/brew_prefix ]]; then
@@ -11,6 +10,8 @@ else
   echo "$HOMEBREW_PREFIX" > ~/.cache/brew_prefix
   export HOMEBREW_PREFIX
 fi
+
+PATH=${HOMEBREW_PREFIX}/bin/:$PATH
 
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
