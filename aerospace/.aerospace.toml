@@ -221,6 +221,10 @@ if.app-id = "com.apple.Safari"
 run = "move-node-to-workspace B"
 
 [[on-window-detected]]
+if.app-id = "com.apple.Safari.WebApp.A2CC9576-E14A-4EF9-AFAF-F0E574A27604"
+run = "move-node-to-workspace B"
+
+[[on-window-detected]]
 if.app-id = "com.tinyspeck.slackmacgap"
 run = "move-node-to-workspace S"
 
