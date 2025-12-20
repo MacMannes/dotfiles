@@ -11,7 +11,7 @@ if command -v eza &>/dev/null; then
     alias lta='lt -a'
 fi
 
-alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
+alias ff="fzf --preview 'bat --style=full --color=always {}'"
 
 if which zoxide &>/dev/null; then
     alias cd="zd"

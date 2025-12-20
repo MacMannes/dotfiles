@@ -36,8 +36,6 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' fzf-flags --color=fg:4
-# zstyle ':fzf-tab:complete:cd:*' fzf --preview '/bin/ls --color $realpath'
-# zstyle ':fzf-tab:complete:__zoxide_z:*' fzf --preview '/bin/ls --color $realpath'
 
 
 # Keybindings
@@ -45,9 +43,6 @@ bindkey "^[^[[C" forward-word
 bindkey "^[^[[D" backward-word
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
-
-# bindkey              '^I' menu-select
-# bindkey "$terminfo[kcbt]" menu-select
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -58,10 +53,12 @@ export NVM_DIR="$HOME/.nvm"
 
 export HOMEBREW_NO_ENV_HINT=1
 
-# Shell inttegrations
+# Shell integrations
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
+
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/andre/.lmstudio/bin"
