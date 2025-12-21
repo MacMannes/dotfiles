@@ -9,6 +9,7 @@ else
 fi
 
 PATH=${HOMEBREW_PREFIX}/bin/:$PATH
+export HOMEBREW_NO_ENV_HINTS=1
 
 # Antidote via Homebrew
 if [[ -n "$HOMEBREW_PREFIX" ]] &&
