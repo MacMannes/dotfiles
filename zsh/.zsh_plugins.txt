@@ -7,3 +7,6 @@ Aloxaf/fzf-tab
 ohmyzsh/ohmyzsh path:plugins/aws
 ohmyzsh/ohmyzsh path:plugins/macos
 
+# Custom plugins
+grigorii-zander/zsh-npm-scripts-autocomplete
+
