@@ -1,5 +1,7 @@
-if [[ "$TERM" != "linux" ]]; then
-   command -v starship >/dev/null && eval "$(starship init zsh)"
+if [[ "$TERM" == "linux" ]]; then
+    PS1='%F{green}%n@%m %~ > %f'
+else
+    command -v starship >/dev/null && eval "$(starship init zsh)"
 fi 
 
 command -v zoxide   >/dev/null && eval "$(zoxide init zsh)"
