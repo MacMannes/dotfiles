@@ -1,29 +1,3 @@
-"$schema" = "https://starship.rs/config-schema.json"
-
-add_newline = false
-
-format = "$username@$hostname $directory$git_branch$git_status$line_break$character"
-
-[username]
-show_always = true
-format = "$user"
-
-[hostname]
-ssh_only = false
-format = "@$hostname"
-
-[directory]
-format = " [$path]"
-truncation_length = 3
-truncation_symbol = "../"
-
-[git_branch]
-symbol = ""
-format = " ($branch)"
-
-[git_status]
-format = " [$all_status$ahead_behind]"
-
 [nodejs]
 disabled = true
 [c]
@@ -48,10 +22,4 @@ disabled = true
 disabled = true
 [os]
 disabled = true
-[time]
-disabled = true
-
-[character]
-success_symbol = "> "
-error_symbol = "! "
 
