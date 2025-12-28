@@ -1,0 +1,85 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+format = "$username@$hostname $directory $git_branch $git_status $line_break$character"
+
+# ---------- Core ----------
+
+[username]
+show_always = false
+format = "$user"
+
+[hostname]
+format = "@$hostname"
+ssh_only = false
+
+[directory]
+format = " [$path]"
+truncation_length = 3
+truncation_symbol = "../"
+
+# ---------- Git ----------
+
+[git_branch]
+symbol = ""
+format = " ($branch)"
+
+[git_status]
+format = " [$all_status$ahead_behind]"
+
+# ---------- Language modules (version only, no icons) ----------
+
+[nodejs]
+symbol = ""
+format = " node($version)"
+
+[c]
+symbol = ""
+format = " c($version)"
+
+[rust]
+symbol = ""
+format = " rust($version)"
+
+[golang]
+symbol = ""
+format = " go($version)"
+
+[php]
+symbol = ""
+format = " php($version)"
+
+[java]
+symbol = ""
+format = " java($version)"
+
+[kotlin]
+symbol = ""
+format = " kt($version)"
+
+[haskell]
+symbol = ""
+format = " hs($version)"
+
+[python]
+symbol = ""
+format = " py($version)"
+
+# ---------- Docker / Conda ----------
+
+[docker_context]
+symbol = ""
+format = " docker($context)"
+
+[conda]
+symbol = ""
+format = " conda($environment)"
+
+# ---------- Prompt ----------
+
+[character]
+success_symbol = "> "
+error_symbol = "! "
+vimcmd_symbol = "< "
+
