@@ -1,25 +1,21 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+"$schema" = "https://starship.rs/config-schema.json"
 
 add_newline = false
 
-format = "$username@$hostname $directory $git_branch $git_status $line_break$character"
-
-# ---------- Core ----------
+format = "$username@$hostname $directory$git_branch$git_status$line_break$character"
 
 [username]
-show_always = false
+show_always = true
 format = "$user"
 
 [hostname]
-format = "@$hostname"
 ssh_only = false
+format = "@$hostname"
 
 [directory]
 format = " [$path]"
 truncation_length = 3
 truncation_symbol = "../"
-
-# ---------- Git ----------
 
 [git_branch]
 symbol = ""
@@ -28,58 +24,34 @@ format = " ($branch)"
 [git_status]
 format = " [$all_status$ahead_behind]"
 
-# ---------- Language modules (version only, no icons) ----------
-
 [nodejs]
-symbol = ""
-format = " node($version)"
-
+disabled = true
 [c]
-symbol = ""
-format = " c($version)"
-
+disabled = true
 [rust]
-symbol = ""
-format = " rust($version)"
-
+disabled = true
 [golang]
-symbol = ""
-format = " go($version)"
-
+disabled = true
 [php]
-symbol = ""
-format = " php($version)"
-
+disabled = true
 [java]
-symbol = ""
-format = " java($version)"
-
+disabled = true
 [kotlin]
-symbol = ""
-format = " kt($version)"
-
+disabled = true
 [haskell]
-symbol = ""
-format = " hs($version)"
-
+disabled = true
 [python]
-symbol = ""
-format = " py($version)"
-
-# ---------- Docker / Conda ----------
-
+disabled = true
 [docker_context]
-symbol = ""
-format = " docker($context)"
-
+disabled = true
 [conda]
-symbol = ""
-format = " conda($environment)"
-
-# ---------- Prompt ----------
+disabled = true
+[os]
+disabled = true
+[time]
+disabled = true
 
 [character]
 success_symbol = "> "
 error_symbol = "! "
-vimcmd_symbol = "< "
 
