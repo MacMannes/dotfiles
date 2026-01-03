@@ -6,6 +6,7 @@ return {
                 conf = false,
                 dosini = false,
                 systemd = false,
+                hyperlang = false,
             },
         },
     },
