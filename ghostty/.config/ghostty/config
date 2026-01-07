@@ -4,3 +4,6 @@ font-size = "14"
 theme = jb-dark
 
 keybind = unconsumed:cmd+w=text:\x1bw 
+
+background-opacity = 0.90
+background-blur = true
