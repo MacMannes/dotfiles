@@ -219,3 +219,8 @@ run = "move-node-to-workspace M"
 if.app-id = "com.microsoft.teams2"
 run = "move-node-to-workspace M"
 
+ [[on-window-detected]]
+ if.app-id = "com.apple.MobileSMS"
+ run = [
+    "layout floating",
+ ]
