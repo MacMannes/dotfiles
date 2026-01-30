@@ -147,7 +147,6 @@ on-mode-changed = []
     cmd-7 = 'workspace 7'
     cmd-8 = 'workspace 8'
     cmd-9 = 'workspace 9'
-    cmd-0 = 'workspace 0'
     cmd-m = 'workspace M'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
@@ -160,7 +159,6 @@ on-mode-changed = []
     cmd-shift-7 = [ 'move-node-to-workspace 7', 'workspace 7' ]
     cmd-shift-8 = [ 'move-node-to-workspace 8', 'workspace 8' ]
     cmd-shift-9 = [ 'move-node-to-workspace 9', 'workspace 9' ]
-    cmd-shift-0 = [ 'move-node-to-workspace B', 'workspace 0' ]
     cmd-shift-m = [ 'move-node-to-workspace M', 'workspace M' ]
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
@@ -205,7 +203,7 @@ on-mode-changed = []
 
 [[on-window-detected]]
 if.app-id = "com.apple.Safari"
-run = "move-node-to-workspace 0"
+run = "move-node-to-workspace 9"
 
 # [[on-window-detected]]
 # if.app-id = "com.apple.Safari.WebApp.A2CC9576-E14A-4EF9-AFAF-F0E574A27604"
