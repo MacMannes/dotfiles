@@ -7,3 +7,7 @@ file:
   path: /Users/andre/OneDrive - NS/tock.txt
 last_update_check: 2026-02-19T15:40:12.463076+01:00
 time_format: "24"
+
+calendar:
+  # time_spent_format: "15:04:00"
+  time_end_format: " 🏁 15:04"

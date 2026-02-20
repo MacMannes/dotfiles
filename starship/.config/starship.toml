@@ -170,9 +170,8 @@ vimcmd_replace_symbol = '[](bold fg:color_purple)'
 vimcmd_visual_symbol = '[](bold fg:color_yellow)'
 
 [custom.tock]
-command = "tock current --format '{{.Project}}: {{.Duration}}'"
-when = "tock current > /dev/null 2>&1"
-# format = "[$output]($style) "
+command = "tock current --format '{{.Project}}/{{.Description}}: {{.Duration}}'"
+when = '''[ "$(tock current | tr -d '\r')" != "No currently running activities." ]'''
 format = '[[   $output](fg:color_fg0 bg:color_bg1)]($style)'
 style = "bg:color_bg1"
 shell = ["bash", "--noprofile", "--norc"]
