@@ -11,4 +11,4 @@ weekly_target: "22h"
 
 calendar:
   # time_spent_format: "15:04:00"
-  time_end_format: " 🏁 15:04"
+  time_end_format: "  15:04"
