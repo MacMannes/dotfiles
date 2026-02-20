@@ -24,6 +24,7 @@ $docker_context\
 $conda\
 [](fg:color_bg3 bg:color_bg1)\
 $time\
+$custom\
 [ ](fg:color_bg1)\
 $line_break$character"""
 
@@ -167,3 +168,11 @@ vimcmd_symbol = '[](bold fg:color_green)'
 vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
 vimcmd_replace_symbol = '[](bold fg:color_purple)'
 vimcmd_visual_symbol = '[](bold fg:color_yellow)'
+
+[custom.tock]
+command = "tock current --format '{{.Project}}: {{.Duration}}'"
+when = "tock current > /dev/null 2>&1"
+# format = "[$output]($style) "
+format = '[[   $output](fg:color_fg0 bg:color_bg1)]($style)'
+style = "bg:color_bg1"
+shell = ["bash", "--noprofile", "--norc"]
