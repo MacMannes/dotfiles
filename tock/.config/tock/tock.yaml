@@ -1,14 +1,12 @@
 backend: file
+calendar:
+  time_end_format: "  15:04"
 check_updates: true
 export:
   ical:
     file_name: tock_export.ics
 file:
   path: /Users/andre/OneDrive - NS/.tock.txt
-last_update_check: 2026-02-19T15:40:12.463076+01:00
+last_update_check: 2026-02-26T15:47:33.087481+01:00
 time_format: "24"
-weekly_target: "22h"
-
-calendar:
-  # time_spent_format: "15:04:00"
-  time_end_format: "  15:04"
+weekly_target: 22h
