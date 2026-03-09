@@ -1,6 +1,7 @@
 git:
   pagers:
     - pager: "delta --dark --paging=never --minus-style 'syntax #4f2d3d' --minus-emph-style 'syntax #863852' --plus-style 'syntax #3d4f3d' --plus-emph-style 'syntax #4d6050' --line-numbers-minus-style '#f38ba8' --line-numbers-plus-style '#a6e3a1'"
+    - pager: "delta --dark --side-by-side --paging=never --minus-style 'syntax #4f2d3d' --minus-emph-style 'syntax #863852' --plus-style 'syntax #3d4f3d' --plus-emph-style 'syntax #4d6050' --line-numbers-minus-style '#f38ba8' --line-numbers-plus-style '#a6e3a1'"
 
 gui:
   theme:
