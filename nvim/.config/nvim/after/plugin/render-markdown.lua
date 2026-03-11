@@ -8,12 +8,12 @@ require("render-markdown").setup({
         icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
         position = "overlay",
         signs = { "󰫎 " },
-        width = "full",
+        width = "block",
         left_margin = 0,
         left_pad = 0,
         right_pad = 0,
-        min_width = 0,
-        border = false,
+        min_width = 85,
+        border = true,
         border_virtual = false,
         border_prefix = false,
         above = "▄",
@@ -35,6 +35,10 @@ require("render-markdown").setup({
             "RenderMarkdownH6",
         },
         custom = {},
+    },
+    code = {
+        width = "block",
+        min_width = 85,
     },
     html = {
         comment = {

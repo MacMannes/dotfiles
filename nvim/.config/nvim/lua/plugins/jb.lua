@@ -11,48 +11,83 @@ return {
             },
         },
     },
-    init = function()
-        -- Set custom highlights for line numbers
-        vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#7a7e85", bold = false })
-        vim.api.nvim_set_hl(0, "LineNr", { fg = "#ce8e6d", bold = true })
-        vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#7a7e85", bold = false })
+    config = function(_, opts)
+        require("jb").setup(opts)
 
-        -- Colors for NeoTest
-        vim.api.nvim_set_hl(0, "NeotestAdapterName", { fg = "#ce8e6d", bold = true })
-        vim.api.nvim_set_hl(0, "NeotestDir", { fg = "#b6b7be" })
-        vim.api.nvim_set_hl(0, "NeotestFile", { fg = "#57a8f5" })
-        vim.api.nvim_set_hl(0, "NeotestNamespace", { fg = "#c87dba" })
-        vim.api.nvim_set_hl(0, "NeotestSkipped", { fg = "#57a8f5" })
-        vim.api.nvim_set_hl(0, "NeotestPassed", { fg = "#57965c" })
-        vim.api.nvim_set_hl(0, "NeotestFailed", { fg = "#db5c5c" })
+        -- Set custom highlights after colorscheme loads
+        local function set_custom_highlights()
+            -- Set custom highlights for line numbers
+            vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#7a7e85", bold = false })
+            vim.api.nvim_set_hl(0, "LineNr", { fg = "#ce8e6d", bold = true })
+            vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#7a7e85", bold = false })
 
-        -- Package-info color
-        vim.api.nvim_set_hl(0, "PackageInfoOutdatedVersion", { fg = "#d19a66", bold = false })
+            -- Colors for NeoTest
+            vim.api.nvim_set_hl(0, "NeotestAdapterName", { fg = "#ce8e6d", bold = true })
+            vim.api.nvim_set_hl(0, "NeotestDir", { fg = "#b6b7be" })
+            vim.api.nvim_set_hl(0, "NeotestFile", { fg = "#57a8f5" })
+            vim.api.nvim_set_hl(0, "NeotestNamespace", { fg = "#c87dba" })
+            vim.api.nvim_set_hl(0, "NeotestSkipped", { fg = "#57a8f5" })
+            vim.api.nvim_set_hl(0, "NeotestPassed", { fg = "#57965c" })
+            vim.api.nvim_set_hl(0, "NeotestFailed", { fg = "#db5c5c" })
 
-        vim.api.nvim_set_hl(0, "FoldColumn", { bg = "" })
-        vim.api.nvim_set_hl(0, "CursorLine", { bg = "#43454a" })
-        vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#858a94", bg = "#2c2d31" })
-        vim.api.nvim_set_hl(0, "SnacksPickerBorder", { fg = "#393b40" })
-        vim.api.nvim_set_hl(0, "SnacksPickerBorderPreview", { fg = "#0000ff" })
-        vim.api.nvim_set_hl(0, "SnacksPickerInputBorder", { fg = "#393b40", bg = "#2c2d31" })
-        vim.api.nvim_set_hl(0, "SnacksPickerPrompt", { fg = "#79797a" })
-        vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#323438" })
-        vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = "#65676f" })
-        vim.api.nvim_set_hl(0, "SnacksIndentChunk", { fg = "#65676f" })
-        vim.api.nvim_set_hl(0, "SnacksPickerList", { fg = "#02afff", bg = "#2b2d30" })
-        vim.api.nvim_set_hl(0, "MsgArea", { fg = "#95979e" })
-        vim.api.nvim_set_hl(0, "NoiceFormatProgressDone", { bg = "#1e1f21" })
-        vim.api.nvim_set_hl(0, "NoiceFormatProgressTodo", { bg = "#1e1f21" })
-        vim.api.nvim_set_hl(0, "WinBar", { bg = "#2b2d30", fg = "#f0f0ea" })
-        vim.api.nvim_set_hl(0, "WinBarNC", { bg = "#2b2d30", fg = "#f0f0ea" })
-        vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#c29e49" })
-        vim.api.nvim_set_hl(0, "MacMannes", { bg = "#0000ff", fg = "#fffc79" })
+            -- Package-info color
+            vim.api.nvim_set_hl(0, "PackageInfoOutdatedVersion", { fg = "#d19a66", bold = false })
 
-        vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = "#C678DD" }) -- Example: Purple C678DD
-        vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = "#61AFEF" }) -- Example: Blue 61AFEF
-        vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = "#E5C07B" }) -- Example: Yellow E5C07B
-        vim.api.nvim_set_hl(0, "RenderMarkdownH4", { fg = "#98C379" }) -- Example: Green 98C379
-        vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = "#E06C75" }) -- Example: Red E06C75
-        vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = "#ABB2BF" }) -- Example: Gray ABB2BF
+            vim.api.nvim_set_hl(0, "FoldColumn", { bg = "" })
+            vim.api.nvim_set_hl(0, "CursorLine", { bg = "#26282e" })
+            vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#858a94", bg = "#2c2d31" })
+            vim.api.nvim_set_hl(0, "SnacksPickerBorder", { fg = "#393b40" })
+            vim.api.nvim_set_hl(0, "SnacksPickerBorderPreview", { fg = "#0000ff" })
+            vim.api.nvim_set_hl(0, "SnacksPickerInputBorder", { fg = "#393b40", bg = "#2c2d31" })
+            vim.api.nvim_set_hl(0, "SnacksPickerPrompt", { fg = "#79797a" })
+            vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#323438" })
+            vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = "#65676f" })
+            vim.api.nvim_set_hl(0, "SnacksIndentChunk", { fg = "#65676f" })
+            vim.api.nvim_set_hl(0, "SnacksPickerList", { fg = "#02afff", bg = "#2b2d30" })
+            vim.api.nvim_set_hl(0, "MsgArea", { fg = "#95979e" })
+            vim.api.nvim_set_hl(0, "NoiceFormatProgressDone", { bg = "#1e1f21" })
+            vim.api.nvim_set_hl(0, "NoiceFormatProgressTodo", { bg = "#1e1f21" })
+            vim.api.nvim_set_hl(0, "WinBar", { bg = "#2b2d30", fg = "#f0f0ea" })
+            vim.api.nvim_set_hl(0, "WinBarNC", { bg = "#2b2d30", fg = "#f0f0ea" })
+            vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#c29e49" })
+            vim.api.nvim_set_hl(0, "CodeWithMe_UserOneSelection", { bg = "#32426b" })
+            vim.api.nvim_set_hl(0, "MacMannes", { bg = "#0000ff", fg = "#fffc79" })
+
+            -- Markdown header colors for render-markdown.nvim
+            vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = "#C678DD", bold = true }) -- Purple
+            vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = "#61AFEF", bold = true }) -- Blue
+            vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = "#E5C07B", bold = true }) -- Yellow
+            vim.api.nvim_set_hl(0, "RenderMarkdownH4", { fg = "#98C379", bold = true }) -- Green
+            vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = "#E06C75", bold = true }) -- Red
+            vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = "#56B6C2", bold = true }) -- Cyan
+
+            -- Background colors for markdown headers (optional)
+            vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#2d2539" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#1e2a3a" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#2d2a1e" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#1e2d20" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#2d1e1e" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "#1e2a2d" })
+
+            -- Override treesitter markdown heading colors to match render-markdown
+            vim.api.nvim_set_hl(0, "@markup.heading.1.markdown", { fg = "#C678DD", bold = true })
+            vim.api.nvim_set_hl(0, "@markup.heading.2.markdown", { fg = "#61AFEF", bold = true })
+            vim.api.nvim_set_hl(0, "@markup.heading.3.markdown", { fg = "#E5C07B", bold = true })
+            vim.api.nvim_set_hl(0, "@markup.heading.4.markdown", { fg = "#98C379", bold = true })
+            vim.api.nvim_set_hl(0, "@markup.heading.5.markdown", { fg = "#E06C75", bold = true })
+            vim.api.nvim_set_hl(0, "@markup.heading.6.markdown", { fg = "#56B6C2", bold = true })
+
+            -- Markdown code block background (subtle)
+            vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#222427" })
+        end
+
+        -- Apply highlights immediately
+        set_custom_highlights()
+
+        -- Reapply highlights when colorscheme changes
+        vim.api.nvim_create_autocmd("ColorScheme", {
+            pattern = "jb",
+            callback = set_custom_highlights,
+        })
     end,
 }
