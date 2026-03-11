@@ -47,5 +47,12 @@ return {
         vim.api.nvim_set_hl(0, "WinBarNC", { bg = "#2b2d30", fg = "#f0f0ea" })
         vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#c29e49" })
         vim.api.nvim_set_hl(0, "MacMannes", { bg = "#0000ff", fg = "#fffc79" })
+
+        vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = "#C678DD" }) -- Example: Purple C678DD
+        vim.api.nvim_set_hl(0, "RenderMarkdownH2", { fg = "#61AFEF" }) -- Example: Blue 61AFEF
+        vim.api.nvim_set_hl(0, "RenderMarkdownH3", { fg = "#E5C07B" }) -- Example: Yellow E5C07B
+        vim.api.nvim_set_hl(0, "RenderMarkdownH4", { fg = "#98C379" }) -- Example: Green 98C379
+        vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = "#E06C75" }) -- Example: Red E06C75
+        vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = "#ABB2BF" }) -- Example: Gray ABB2BF
     end,
 }
