@@ -7,3 +7,5 @@ zstyle ':fzf-tab:*' fzf-flags --color=fg:4
 # bun completions
 [ -s "/Users/andre/.bun/_bun" ] && source "/Users/andre/.bun/_bun"
 
+# tock completions
+source ~/.zshrc.d/custom/plugins/_tock
