@@ -1,0 +1,6 @@
+theme: galaxy
+editor: nvim
+pager: bat
+pager_json: fx
+response:
+  prettify_json: true
