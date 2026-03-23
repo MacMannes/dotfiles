@@ -1,0 +1,26 @@
+[user]
+	email = andre.mathlener@ns.nl
+	name = André Mathlener
+	signingKey = 
+	gpgSign = false
+[gpg]
+	format = openpgp
+	program = gpg
+[commit]
+	gpgSign = false
+[tag]
+	forceSignAnnotated = false
+[gpg "ssh"]
+	program = 
+	allowedSignersFile = 
+[init]
+	defaultBranch = main
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[pull]
+	rebase = true
+[fetch]
+	prune = true
