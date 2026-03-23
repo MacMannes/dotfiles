@@ -1,12 +1,14 @@
 backend: file
 calendar:
-  time_end_format: "  15:04"
+    time_end_format: '  15:04'
 check_updates: true
 export:
-  ical:
-    file_name: tock_export.ics
+    ical:
+        file_name: tock_export.ics
 file:
-  path: /Users/andre/OneDrive - NS/.tock.txt
-last_update_check: 2026-03-05T15:47:35.705232+01:00
+    path: /Users/andre/OneDrive - NS/.tock.txt
+last_update_check: 2026-03-22T15:49:52.913284+01:00
+sqlite:
+    path: /Users/andre/.tock.db
 time_format: "24"
 weekly_target: 24h
