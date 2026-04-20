@@ -9,3 +9,5 @@ command -v fzf      >/dev/null && eval "$(fzf --zsh)"
 
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
+

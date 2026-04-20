@@ -1,0 +1,8 @@
+--hidden
+--glob=!.git/
+--glob=!.cache/
+--glob=!.npm/
+--glob=!.yarn/
+--glob=!.vscode/
+--glob=!.idea/
+--glob=!.DS_Store
