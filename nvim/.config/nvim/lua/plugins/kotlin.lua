@@ -1,4 +1,41 @@
 return {
+  -- Kotlin DAP debugging
+  {
+    "mfussenegger/nvim-dap",
+    optional = true,
+    dependencies = {
+      "mason-org/mason.nvim",
+    },
+    opts = function()
+      local dap = require("dap")
+
+      dap.adapters.kotlin = {
+        type = "executable",
+        command = vim.fn.stdpath("data") .. "/mason/bin/kotlin-debug-adapter",
+      }
+
+      dap.configurations.kotlin = {
+        {
+          type = "kotlin",
+          request = "launch",
+          name = "Launch Kotlin (main class)",
+          projectRoot = "${workspaceFolder}",
+          mainClass = function()
+            return vim.fn.input("Main class (e.g. com.example.MainKt): ")
+          end,
+        },
+        {
+          type = "kotlin",
+          request = "attach",
+          name = "Attach to JVM (port 5005)",
+          hostName = "localhost",
+          port = 5005,
+          timeout = 10000,
+        },
+      }
+    end,
+  },
+
   {
     "AlexandrosAlexiou/kotlin.nvim",
     ft = { "kotlin" },
@@ -25,10 +62,10 @@ return {
     end,
   },
 
-  -- Ensure kotlin-lsp is installed via Mason
+  -- Ensure kotlin tools are installed via Mason
   {
     "mason-org/mason.nvim",
-    opts = { ensure_installed = { "kotlin-lsp" } },
+    opts = { ensure_installed = { "kotlin-lsp", "kotlin-debug-adapter" } },
   },
 
   -- Disable LazyVim's automatic kotlin_lsp setup (kotlin.nvim handles it as kotlin_ls)
