@@ -61,3 +61,31 @@ vim.keymap.set("i", "<A-Down>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down"
 vim.keymap.set("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up" })
 vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+
+-- Copy OpenCode file reference (@file#L<line>) to clipboard
+vim.keymap.set("n", "<leader>oc", function()
+  local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  local ref = "@" .. path .. "#L" .. line
+  vim.fn.setreg("+", ref)
+  vim.notify("Copied: " .. ref)
+end, { desc = "Copy OpenCode file reference" })
+
+vim.keymap.set("v", "<leader>oc", function()
+  local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+  local start_line = vim.fn.line("v")
+  local end_line = vim.fn.line(".")
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
+  local ref
+  if start_line == end_line then
+    ref = "@" .. path .. "#L" .. start_line
+  else
+    ref = "@" .. path .. "#L" .. start_line .. "-" .. end_line
+  end
+  vim.schedule(function()
+    vim.fn.setreg("+", ref)
+    vim.notify("Copied: " .. ref)
+  end)
+end, { desc = "Copy OpenCode file reference (range)" })
