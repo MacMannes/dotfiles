@@ -31,6 +31,7 @@ return {
           hostName = "localhost",
           port = 5005,
           timeout = 10000,
+          projectRoot = "${workspaceFolder}",
         },
       }
     end,
