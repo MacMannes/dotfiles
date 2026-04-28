@@ -11,4 +11,4 @@ last_update_check: 2026-04-23T10:22:42.484393+02:00
 sqlite:
     path: /Users/andre/.tock.db
 time_format: "24"
-weekly_target: 24h
+weekly_target: 26h
