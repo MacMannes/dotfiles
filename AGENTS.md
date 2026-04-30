@@ -12,6 +12,7 @@ locations.
 - `nvim/.config/nvim/` - LazyVim-based Neovim setup
 - `aerospace/.config/aerospace/` - AeroSpace window manager
 - `git/.gitconfig` - Git configuration
+- `scripts/` - Custom shell scripts (automatically added to PATH)
 
 ## Shell Configuration (zsh/)
 
