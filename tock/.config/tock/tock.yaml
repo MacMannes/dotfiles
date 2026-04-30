@@ -7,7 +7,7 @@ export:
         file_name: tock_export.ics
 file:
     path: /Users/andre/OneDrive - NS/.tock.txt
-last_update_check: 2026-04-23T10:22:42.484393+02:00
+last_update_check: 2026-04-30T10:36:21.316073+02:00
 sqlite:
     path: /Users/andre/.tock.db
 time_format: "24"
