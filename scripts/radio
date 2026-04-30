@@ -1,0 +1,179 @@
+#!/bin/bash
+
+# Radio Stream Launcher
+# Play Dutch radio stations with a beautiful interface
+# Usage: radio [station]
+# Examples:
+#   radio          # Interactive selection with gum
+#   radio simone   # Play Simone FM
+#   radio sky      # Play Sky Radio
+
+# Check if running on macOS
+if [[ "$OSTYPE" != "darwin"* ]]; then
+    echo "Error: This script only works on macOS" >&2
+    echo "The Music app and osascript are required to play radio streams." >&2
+    exit 1
+fi
+
+# ============================================================================
+# RADIO STATIONS CONFIGURATION
+# Add new stations here in the format:
+#   STATION_KEY="Display Name|Stream URL"
+# ============================================================================
+STATIONS=(
+    "simone=Simone FM|https://stream.simone.nl/simone"
+    "sky=Sky Radio|https://playerservices.streamtheworld.com/api/livestream-redirect/SKYRADIO.mp3"
+    "radio538=Radio 538|https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO538.mp3"
+    "radio100=100%NL|https://stream.100p.nl/100pctnl.mp3"
+    "qmusic=Qmusic|https://stream.qmusic.nl/qmusic/mp3"
+    "radio10=Radio 10|https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO10.mp3"
+    "veronica=Radio Veronica|https://playerservices.streamtheworld.com/api/livestream-redirect/VERONICA.mp3"
+    "slam=SLAM!|https://stream.slam.nl/slam_mp3"
+    "fm3fm=NPO 3FM|https://icecast.omroep.nl/3fm-bb-mp3"
+    "radio1=NPO Radio 1|https://icecast.omroep.nl/radio1-bb-mp3"
+    "radio2=NPO Radio 2|https://icecast.omroep.nl/radio2-bb-mp3"
+    "radio4=NPO Klassiek|https://icecast.omroep.nl/radio4-bb-mp3"
+    "radio5=NPO Radio 5|https://icecast.omroep.nl/radio5-bb-mp3"
+    "kink=KINK|https://playerservices.streamtheworld.com/api/livestream-redirect/KINK.mp3"
+    "sublime=Sublime|https://playerservices.streamtheworld.com/api/livestream-redirect/SUBLIME.mp3"
+    "arrow=Arrow Classic Rock|https://stream.player.arrow.nl/arrow"
+    "classic=Classicnl|https://stream.classic.nl/classicnl.mp3"
+    "nostalgie=Nostalgie|https://playerservices.streamtheworld.com/api/livestream-redirect/NOSTALGIENL.mp3"
+)
+
+# ============================================================================
+# FUNCTIONS
+# ============================================================================
+
+# Get station info by key
+# Returns: "Display Name|Stream URL" or empty string if not found
+get_station() {
+    local search_key="$1"
+    for entry in "${STATIONS[@]}"; do
+        local key="${entry%%=*}"
+        if [[ "$key" == "$search_key" ]]; then
+            echo "${entry#*=}"
+            return 0
+        fi
+    done
+    return 1
+}
+
+# Get all station keys
+get_station_keys() {
+    for entry in "${STATIONS[@]}"; do
+        echo "${entry%%=*}"
+    done
+}
+
+# Display available stations
+list_stations() {
+    echo "Available radio stations:"
+    echo ""
+    for entry in "${STATIONS[@]}"; do
+        local key="${entry%%=*}"
+        local info="${entry#*=}"
+        local name="${info%%|*}"
+        printf "  %-15s %s\n" "$key" "$name"
+    done
+    echo ""
+}
+
+# Play a radio stream
+play_stream() {
+    local name="$1"
+    local url="$2"
+    
+    osascript -e "tell application \"Music\" to open location \"$url\""
+    
+    if [[ $? -eq 0 ]]; then
+        echo "▶ Playing: $name"
+    else
+        echo "Error: Failed to play $name" >&2
+        exit 1
+    fi
+}
+
+# Interactive station selection using gum
+select_station_interactive() {
+    # Build options list
+    local options=()
+    for entry in "${STATIONS[@]}"; do
+        local key="${entry%%=*}"
+        local info="${entry#*=}"
+        local name="${info%%|*}"
+        options+=("$key - $name")
+    done
+    
+    # Use gum to select
+    local choice
+    choice=$(printf '%s\n' "${options[@]}" | gum choose --header "🎵 Select a radio station" --height 20)
+    
+    if [[ -z "$choice" ]]; then
+        echo "No station selected" >&2
+        exit 1
+    fi
+    
+    # Extract key from choice
+    local key="${choice%% - *}"
+    local info
+    info=$(get_station "$key")
+    local name="${info%%|*}"
+    local url="${info#*|}"
+    play_stream "$name" "$url"
+}
+
+# ============================================================================
+# MAIN
+# ============================================================================
+
+# If no parameter, use interactive selection
+if [[ $# -eq 0 ]]; then
+    # Check if gum is installed
+    if ! command -v gum &> /dev/null; then
+        echo "Error: 'gum' is required for interactive mode" >&2
+        echo "Install it with: brew install gum" >&2
+        echo ""
+        list_stations
+        echo "Usage: radio <station>" >&2
+        exit 1
+    fi
+    
+    select_station_interactive
+    exit 0
+fi
+
+# Handle help flag
+if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
+    echo "Usage: radio [station]"
+    echo ""
+    echo "Play Dutch radio stations from the command line."
+    echo ""
+    echo "Options:"
+    echo "  station    Station key to play (see list below)"
+    echo "  -h, --help Show this help message"
+    echo ""
+    list_stations
+    exit 0
+fi
+
+# Handle list flag
+if [[ "$1" == "--list" ]] || [[ "$1" == "-l" ]]; then
+    list_stations
+    exit 0
+fi
+
+# Play specified station
+local_key="$1"
+station_info=$(get_station "$local_key")
+
+if [[ -z "$station_info" ]]; then
+    echo "Error: Unknown station '$local_key'" >&2
+    echo ""
+    list_stations
+    exit 1
+fi
+
+name="${station_info%%|*}"
+url="${station_info#*|}"
+play_stream "$name" "$url"
