@@ -7,6 +7,8 @@ fi
 command -v zoxide   >/dev/null && eval "$(zoxide init zsh)"
 command -v fzf      >/dev/null && eval "$(fzf --zsh)"
 
+export EDITOR='nvim'
+
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
