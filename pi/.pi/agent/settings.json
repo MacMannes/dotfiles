@@ -7,5 +7,6 @@
   "packages": [
     "npm:pi-opencode-theme"
   ],
-  "editorPaddingX": 2
+  "editorPaddingX": 2,
+  "skills": ["~/.pi-private-skills"]
 }
