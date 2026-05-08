@@ -1,11 +1,11 @@
-background = 1E1F22
+background = 191a1c
 foreground = BCBEC4
 
 selection-background = 214283
 selection-foreground = BCBEC4
 
 cursor-color = CED0D6
-cursor-text = 1E1F22
+cursor-text = 191a1c
 
 palette = 0=#000000
 palette = 1=#F0524F

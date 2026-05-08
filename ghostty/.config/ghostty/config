@@ -1,9 +1,11 @@
 font-family = "Jetbrains MonoNL Nerd Font Mono"
 font-size = "14"
 
+window-padding-x = 8
+
 theme = jb-dark
 
 keybind = unconsumed:cmd+w=text:\x1bw 
 
-background-opacity = 0.90
-background-blur = true
+#background-opacity = 0.90
+#background-blur = true
