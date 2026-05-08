@@ -12,7 +12,7 @@ require("render-markdown").setup({
         left_margin = 0,
         left_pad = 0,
         right_pad = 0,
-        min_width = 85,
+        min_width = 120,
         border = true,
         border_virtual = false,
         border_prefix = false,
@@ -38,7 +38,7 @@ require("render-markdown").setup({
     },
     code = {
         width = "block",
-        min_width = 85,
+        min_width = 120,
     },
     html = {
         comment = {
