@@ -1,0 +1,142 @@
+#compdef backpack
+compdef _backpack backpack
+
+# zsh completion for backpack (npx @backpack/cli)
+
+_backpack() {
+    local curcontext=$curcontext state line
+    typeset -A opt_args
+
+    _arguments -C \
+        '--help[Show help]' \
+        '--version[Show version number]' \
+        '--interactive[Run in interactive mode]' \
+        '1: :->cmds' \
+        '*:: :->args' && return 0
+
+    case $state in
+        cmds)
+            local -a commands=(
+                'generate-project:Generates a new project'
+                'generate-pipeline:Generates a new CI/CD pipeline for an existing project'
+                'retrieve-tags:Retrieve tags for an application as registered in the CMDB'
+                'mockserver:Starts a mockserver'
+            )
+            _describe 'backpack command' commands
+            ;;
+        args)
+            curcontext="${curcontext%:*:*}:backpack-${words[1]}:"
+            case $words[1] in
+                generate-project)  _backpack_generate_project ;;
+                generate-pipeline) _backpack_generate_pipeline ;;
+                retrieve-tags)     _backpack_retrieve_tags ;;
+                mockserver)        _backpack_mockserver ;;
+            esac
+            ;;
+    esac
+}
+
+_backpack_generate_project() {
+    _arguments \
+        '--help[Show help]' \
+        '--version[Show version number]' \
+        '--interactive[Run in interactive mode]' \
+        '--app-name=[The name of the app]:app name' \
+        '--minimal[Render a very minimal project]' \
+        '--no-minimal[Do not render a minimal project]' \
+        '--ci[Include a CI/CD pipeline for Azure DevOps]' \
+        '--no-ci[Exclude CI/CD pipeline for Azure DevOps]' \
+        '--datadog-monitoring[Add monitoring with Datadog]' \
+        '--no-datadog-monitoring[Disable Datadog monitoring]' \
+        '--datadog-dashboards-as-code[Include Datadog dashboards in the code]' \
+        '--no-datadog-dashboards-as-code[Exclude Datadog dashboards from the code]' \
+        '--app-config[Use different configurations for every environment]' \
+        '--no-app-config[Disable app config]' \
+        '--app-secrets[App secrets from AWS Secrets Manager]' \
+        '--no-app-secrets[Disable app secrets]' \
+        '--rest-api[API Gateway with Lambda proxy integration]' \
+        '--no-rest-api[Exclude REST API]' \
+        '--dynamodb[Include a DynamoDB table]' \
+        '--no-dynamodb[Exclude DynamoDB table]' \
+        '--only-dev[Generate only resources for AWS DEV environment]' \
+        '--no-only-dev[Generate resources for all environments]' \
+        '--aws-account-dev=[The AWS account id for DEV environment]:AWS account ID' \
+        '--npm-install[Run npm install on the project]' \
+        '--no-npm-install[Skip npm install]' \
+        '--git-init[Initialise a Git repo on the project]' \
+        '--no-git-init[Skip Git initialisation]' \
+        '--profile=[The AWS profile to use]:AWS profile:_backpack_aws_profiles' \
+        ':target directory:_directories'
+}
+
+_backpack_generate_pipeline() {
+    _arguments \
+        '--help[Show help]' \
+        '--version[Show version number]' \
+        '--interactive[Run in interactive mode]' \
+        '--app-name=[The name of the app]:app name' \
+        '--main-branch=[Name of the main branch]:branch name:(main master develop)' \
+        '--sonarqube[Include a CI/CD brick for SonarQube]' \
+        '--no-sonarqube[Exclude SonarQube]' \
+        '--renovate[Include a CI/CD brick for Renovate]' \
+        '--no-renovate[Exclude Renovate]' \
+        '--api-management[Include a CI/CD brick for API Management]' \
+        '--no-api-management[Exclude API Management]' \
+        '--only-dev[Generate only resources for AWS DEV environment]' \
+        '--no-only-dev[Generate resources for all environments]' \
+        '::target directory:_directories'
+}
+
+_backpack_retrieve_tags() {
+    _arguments \
+        '--help[Show help]' \
+        '--version[Show version number]' \
+        '--interactive[Run in interactive mode]' \
+        '--profile=[The AWS profile to use]:AWS profile:_backpack_aws_profiles' \
+        ':application service ID (ASID)'
+}
+
+_backpack_mockserver() {
+    local state line
+    typeset -A opt_args
+
+    _arguments -C \
+        '--help[Show help]' \
+        '--version[Show version number]' \
+        '1: :->subcommand' \
+        '*:: :->args' && return 0
+
+    case $state in
+        subcommand)
+            local -a subcommands=('start:Starts a mockserver')
+            _describe 'mockserver command' subcommands
+            ;;
+        args)
+            case $words[1] in
+                start) _backpack_mockserver_start ;;
+            esac
+            ;;
+    esac
+}
+
+_backpack_mockserver_start() {
+    _arguments \
+        '--help[Show help]' \
+        '--version[Show version number]' \
+        '--host=[Hostname to bind (default: localhost)]:hostname' \
+        '--port=[Port to listen on (default: 3001)]:port number' \
+        '--admin-path=[Admin base path (default: /__mockserver)]:path'
+}
+
+_backpack_aws_profiles() {
+    local -a profiles
+    if command -v aws &>/dev/null; then
+        profiles=("${(@f)$(aws configure list-profiles 2>/dev/null)}")
+        _describe 'AWS profile' profiles
+    fi
+}
+
+# don't run the completion function when being source-ed or eval-ed
+if [ "$funcstack[1]" = "_backpack" ]; then
+    _backpack "$@"
+fi

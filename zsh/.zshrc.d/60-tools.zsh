@@ -13,6 +13,11 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
 
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
+# backpack CLI wrapper (npx @backpack/cli)
+function backpack() {
+	npx @backpack/cli "$@"
+}
+
 # yazi wrapper function to change directory on exit
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

@@ -9,3 +9,6 @@ zstyle ':fzf-tab:*' fzf-flags --color=fg:4
 
 # tock completions
 source ~/.zshrc.d/custom/plugins/_tock
+
+# backpack completions
+source ~/.zshrc.d/custom/plugins/_backpack
