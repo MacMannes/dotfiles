@@ -6,6 +6,15 @@ return {
         lazygit = { configure = false },
         picker = {
             sources = {
+                explorer = {
+                    win = {
+                        list = {
+                            keys = {
+                                ["."] = "toggle_hidden",
+                            },
+                        },
+                    },
+                },
                 files = {
                     hidden = true,
                     ignored = false,
