@@ -1,12 +1,15 @@
 {
-  "lastChangelogVersion": "0.75.3",
+  "lastChangelogVersion": "0.78.0",
   "defaultProvider": "github-copilot",
   "defaultModel": "claude-sonnet-4.6",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "low",
   "theme": "opencode-custom",
   "packages": [
     "npm:pi-opencode-theme"
   ],
   "editorPaddingX": 2,
-  "skills": ["~/.pi-private-skills"]
+  "skills": [
+    "~/.pi-private-skills"
+  ],
+  "hideThinkingBlock": true
 }
