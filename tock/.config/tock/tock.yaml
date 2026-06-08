@@ -1,24 +1,24 @@
 backend: file
 calendar:
-  time_end_format: "  15:04"
+    time_end_format: '  15:04'
 check_updates: true
 export:
-  ical:
-    file_name: tock_export.ics
+    ical:
+        file_name: tock_export.ics
 file:
-  path: /Users/andre/OneDrive - NS/.tock.txt
+    path: /Users/andre/OneDrive - NS/.tock.txt
 language: eng
-last_update_check: 2026-05-28T10:44:44.690191+02:00
+last_update_check: 2026-06-05T11:10:53.277206+02:00
 sqlite:
-  path: /Users/andre/.tock.db
+    path: /Users/andre/.tock.db
 time_format: "24"
 timewarrior:
-  use_tock_tag_colors: false
-  use_tock_tag_colors_calendar: false
-  use_tock_tag_colors_top_projects: false
-  use_tock_tag_colors_weekly_activity: false
+    use_tock_tag_colors: false
+    use_tock_tag_colors_calendar: false
+    use_tock_tag_colors_top_projects: false
+    use_tock_tag_colors_weekly_activity: false
 weekly_target: 27.5h
 working_hours:
-  enabled: false
-  stop_at: ""
-  weekdays: mon,tue,wed,thu,fri
+    enabled: false
+    stop_at: ""
+    weekdays: mon,tue,wed,thu,fri
