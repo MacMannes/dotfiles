@@ -85,6 +85,16 @@ export default function (pi: ExtensionAPI) {
                         thm.fg("dim", `$${cost.toFixed(3)}`),
                     ];
 
+                    // Append any statuses registered via ctx.ui.setStatus()
+                    // Values are passed through as-is so callers can apply their own colors.
+                    // Skip "account" — the pi-account-switcher plugin sets that with an emoji;
+                    // account-status.ts writes the same info under "account-display" with a
+                    // Nerd Font icon and proper colors instead.
+                    for (const [key, value] of footerData.getExtensionStatuses()) {
+                        if (key === "account") continue;
+                        parts.push(value);
+                    }
+
                     const line = " " + parts.join(thm.fg("dim", " · "));
                     return [truncateToWidth(line, width)];
                 },
