@@ -1,8 +1,8 @@
 {
-  "lastChangelogVersion": "0.78.1",
+  "lastChangelogVersion": "0.79.6",
   "defaultProvider": "github-copilot",
   "defaultModel": "claude-sonnet-4.6",
-  "defaultThinkingLevel": "low",
+  "defaultThinkingLevel": "medium",
   "theme": "opencode-custom",
   "packages": [
     "npm:pi-opencode-theme",
