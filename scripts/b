@@ -1,0 +1,148 @@
+#!/bin/bash
+
+# Browser Bookmark Launcher
+# Open work bookmarks in Safari from fzf or by keyword
+# Usage: b [query]
+# Examples:
+#   b              # Interactive selection with fzf
+#   b jira         # Open JIRA directly (exact key match)
+#   b con          # Fuzzy-filter fzf to "con", open if single match
+
+# ============================================================================
+# BOOKMARKS CONFIGURATION
+# Format: "key=Display Name|https://url"
+# The key is what you type after `b` to jump directly.
+# ============================================================================
+BOOKMARKS=(
+    "aws=AWS SSO|https://ns-sso.awsapps.com/start#/"
+    "azure=Azure DevOps|https://dev.azure.com/ns-topaas/NSAPP/_git"
+    "datadog=Datadog|https://app.datadoghq.eu/apm/home"
+    "jira=JIRA|https://ns-topaas.atlassian.net/jira/software/c/projects/NSAPP/boards/550?quickFilter=10581"
+    "confluence=Confluence|https://ns-topaas.atlassian.net/wiki/spaces/MLAB/pages/153026795/Backend+Applications+API+s"
+    "outlook=Outlook|https://outlook.office.com/mail/"
+    "thuiswerk=Thuiswerkportaal|https://nsdigitaal.sharepoint.com/sites/iNSite-IT/SitePages/Thuiswerkportaal.aspx"
+    "nsgo=NS Go Werkplek|https://app.nsgo.nl/registrations/workspace"
+    "itportaal=Mijn IT portaal|https://nsprod.service-now.com/mijnitportaal"
+    "hrportaal=HR portaal|https://nsprod.service-now.com/esc"
+    "support=TOPAAS Support Portal|https://ns-topaas.atlassian.net/servicedesk/customer/portal/49"
+    "miro=Miro|https://miro.com/app/dashboard/"
+    "raindrop=Raindrop|https://app.raindrop.io/my/0"
+    "backpack=Backpack|https://backpack.ns.nl/index.html"
+    "merkplaats=NS Merkplaats|https://www.nsmerkplaats.nl/modules/folder/homepage/default/index.aspx?ItemId=481"
+    "365=Apps - Microsoft 365|https://www.microsoft365.com/apps?auth=2"
+    "slackmojis=Slackmojis|https://slackmojis.com/"
+    "esbuild=esbuild Bundle Analyzer|https://esbuild.github.io/analyze/"
+    "copilot=GitHub Copilot Settings|https://github.com/settings/copilot/features"
+)
+
+# ============================================================================
+# FUNCTIONS
+# ============================================================================
+
+get_bookmark() {
+    local search_key="$1"
+    for entry in "${BOOKMARKS[@]}"; do
+        local key="${entry%%=*}"
+        if [[ "$key" == "$search_key" ]]; then
+            echo "${entry#*=}"
+            return 0
+        fi
+    done
+    return 1
+}
+
+open_bookmark() {
+    local name="$1"
+    local url="$2"
+    open -a Safari "$url"
+    echo "→ $name"
+}
+
+# Build display list: "key   Display Name\tkey" (key hidden after tab for extraction)
+build_list() {
+    for entry in "${BOOKMARKS[@]}"; do
+        local key="${entry%%=*}"
+        local info="${entry#*=}"
+        local name="${info%%|*}"
+        printf "%-20s  %s\t%s\n" "$key" "$name" "$key"
+    done
+}
+
+select_interactive() {
+    local query="$1"
+    local choice
+    choice=$(build_list | fzf \
+        --query "$query" \
+        --header "󰖟  Open in Safari (type to search)" \
+        --height 20 \
+        --layout=reverse \
+        --border=rounded \
+        --prompt "Bookmark> " \
+        --with-nth 1 \
+        --delimiter $'\t' \
+        --ansi)
+
+    [[ -z "$choice" ]] && exit 0
+
+    local key
+    key=$(echo "$choice" | cut -f2)
+    local info
+    info=$(get_bookmark "$key")
+    open_bookmark "${info%%|*}" "${info#*|}"
+}
+
+# ============================================================================
+# MAIN
+# ============================================================================
+
+if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
+    echo "Usage: b [query]"
+    echo ""
+    echo "Open work bookmarks in Safari."
+    echo ""
+    echo "  b            Interactive fzf picker"
+    echo "  b <key>      Open directly by exact key"
+    echo "  b <query>    Fuzzy-filter fzf; auto-opens if single match"
+    echo ""
+    echo "Bookmarks:"
+    build_list | awk -F'\t' '{printf "  %s\n", $1}'
+    exit 0
+fi
+
+if ! command -v fzf &>/dev/null; then
+    echo "Error: 'fzf' is required" >&2
+    echo "Install it with: brew install fzf" >&2
+    exit 1
+fi
+
+# No argument → straight to fzf
+if [[ $# -eq 0 ]]; then
+    select_interactive ""
+    exit 0
+fi
+
+query="$1"
+
+# 1. Exact key match → open immediately
+info=$(get_bookmark "$query")
+if [[ -n "$info" ]]; then
+    open_bookmark "${info%%|*}" "${info#*|}"
+    exit 0
+fi
+
+# 2. Fuzzy: collect how many lines fzf would match
+matches=$(build_list | fzf --filter "$query" --with-nth 1 --delimiter $'\t')
+match_count=$(echo "$matches" | grep -c .)
+
+if [[ $match_count -eq 1 ]]; then
+    # Single fuzzy match → open directly
+    key=$(echo "$matches" | cut -f2)
+    info=$(get_bookmark "$key")
+    open_bookmark "${info%%|*}" "${info#*|}"
+elif [[ $match_count -eq 0 ]]; then
+    echo "No bookmarks match '$query'" >&2
+    exit 1
+else
+    # Multiple matches → pre-fill fzf with the query
+    select_interactive "$query"
+fi
