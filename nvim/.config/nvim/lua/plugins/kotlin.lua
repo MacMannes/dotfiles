@@ -45,6 +45,25 @@ return {
       "mason-lspconfig.nvim",
     },
     config = function()
+      -- Mason installs kotlin-lsp into a versioned subdirectory; find it dynamically
+      local mason_kotlin_base = vim.fn.expand("$MASON/packages/kotlin-lsp")
+      local kotlin_lsp_dir = mason_kotlin_base
+      if vim.fn.isdirectory(mason_kotlin_base .. "/lib") ~= 1 then
+        -- Find the versioned subdirectory (e.g. kotlin-server-x.y.z)
+        local handle = vim.loop.fs_scandir(mason_kotlin_base)
+        if handle then
+          while true do
+            local name, ftype = vim.loop.fs_scandir_next(handle)
+            if not name then break end
+            if ftype == "directory" and name:match("^kotlin%-server") then
+              kotlin_lsp_dir = mason_kotlin_base .. "/" .. name
+              break
+            end
+          end
+        end
+      end
+      vim.env.KOTLIN_LSP_DIR = kotlin_lsp_dir
+
       require("kotlin").setup({
         root_markers = {
           "gradlew",
