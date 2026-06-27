@@ -6,6 +6,12 @@ window-padding-x = 8
 theme = jb-dark
 
 keybind = unconsumed:cmd+w=text:\x1bw 
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+# Quick terminal appearance
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.2
 
 #background-opacity = 0.90
 #background-blur = true
