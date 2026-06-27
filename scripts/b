@@ -58,6 +58,68 @@ open_bookmark() {
     echo "→ $name"
 }
 
+# Convert a git remote URL to a browser URL
+remote_to_url() {
+    local remote="$1"
+
+    # GitHub SSH → HTTPS
+    # git@github.com:org/repo.git → https://github.com/org/repo
+    if [[ "$remote" =~ ^git@github\.com:(.+)(\.git)?$ ]]; then
+        echo "https://github.com/${BASH_REMATCH[1]%.git}"
+        return 0
+    fi
+
+    # GitHub HTTPS
+    # https://github.com/org/repo.git → https://github.com/org/repo
+    if [[ "$remote" =~ ^https://github\.com/(.+)(\.git)?$ ]]; then
+        echo "https://github.com/${BASH_REMATCH[1]%.git}"
+        return 0
+    fi
+
+    # Azure DevOps HTTPS (may include user@ prefix)
+    # https://user@dev.azure.com/org/project/_git/repo
+    if [[ "$remote" =~ ^https://([^@]+@)?dev\.azure\.com/(.+)$ ]]; then
+        echo "https://dev.azure.com/${BASH_REMATCH[2]%.git}"
+        return 0
+    fi
+
+    # Azure DevOps SSH
+    # git@ssh.dev.azure.com:v3/org/project/repo
+    if [[ "$remote" =~ ^git@ssh\.dev\.azure\.com:v3/([^/]+)/([^/]+)/([^/]+)$ ]]; then
+        echo "https://dev.azure.com/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}/_git/${BASH_REMATCH[3]}"
+        return 0
+    fi
+
+    return 1
+}
+
+open_repo() {
+    local root
+    root=$(git rev-parse --show-toplevel 2>/dev/null)
+    if [[ -z "$root" ]]; then
+        echo "Error: not inside a git repository" >&2
+        exit 1
+    fi
+
+    local remote
+    remote=$(git remote get-url origin 2>/dev/null)
+    if [[ -z "$remote" ]]; then
+        echo "Error: no 'origin' remote found" >&2
+        exit 1
+    fi
+
+    local url
+    url=$(remote_to_url "$remote")
+    if [[ -z "$url" ]]; then
+        echo "Error: unrecognised remote — $remote" >&2
+        exit 1
+    fi
+
+    local repo_name
+    repo_name=$(basename "$root")
+    open_bookmark "$repo_name" "$url"
+}
+
 # Build display list: "key   Display Name\tkey" (key hidden after tab for extraction)
 build_list() {
     for entry in "${BOOKMARKS[@]}"; do
@@ -101,6 +163,7 @@ if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
     echo "Open work bookmarks in Safari."
     echo ""
     echo "  b            Interactive fzf picker"
+    echo "  b repo       Open current git repo (GitHub / Azure DevOps) in Safari"
     echo "  b <key>      Open directly by exact key"
     echo "  b <query>    Fuzzy-filter fzf; auto-opens if single match"
     echo ""
@@ -122,6 +185,12 @@ if [[ $# -eq 0 ]]; then
 fi
 
 query="$1"
+
+# 0. Special: open current git repo in browser
+if [[ "$query" == "repo" ]]; then
+    open_repo
+    exit 0
+fi
 
 # 1. Exact key match → open immediately
 info=$(get_bookmark "$query")
