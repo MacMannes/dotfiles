@@ -8,7 +8,7 @@ export:
 file:
     path: /Users/andre/OneDrive - NS/.tock.txt
 language: eng
-last_update_check: 2026-07-04T20:59:21.752572+02:00
+last_update_check: 2026-07-13T09:27:15.62652+02:00
 sqlite:
     path: /Users/andre/.tock.db
 time_format: "24"
@@ -22,3 +22,4 @@ working_hours:
     enabled: false
     stop_at: ""
     weekdays: mon,tue,wed,thu,fri
+
