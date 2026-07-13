@@ -16,6 +16,7 @@ vim.opt.listchars = {
 }
 
 vim.g.snacks_animate = false
+vim.g.lazyvim_ts_lsp = "tsgo"
 
 -- Show CWD and file name in title of terminal app
 vim.o.title = true
