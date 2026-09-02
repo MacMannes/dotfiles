@@ -8,7 +8,7 @@ export:
 file:
     path: /Users/andre/OneDrive - NS/.tock.txt
 language: eng
-last_update_check: 2026-08-19T08:45:27.522023+02:00
+last_update_check: 2026-09-02T09:47:59.106666+02:00
 sqlite:
     path: /Users/andre/.tock.db
 time_format: "24"
@@ -17,6 +17,9 @@ timewarrior:
     use_tock_tag_colors_calendar: false
     use_tock_tag_colors_top_projects: false
     use_tock_tag_colors_weekly_activity: false
+tray:
+    auto_start: false
+    enabled: false
 weekly_target: 27.5h
 working_hours:
     enabled: false
