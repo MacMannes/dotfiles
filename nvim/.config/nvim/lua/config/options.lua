@@ -48,6 +48,21 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufWritePost", "Cursor
     callback = update_title,
 })
 
+-- Save the terminal's title on the terminal's own title-stack when Neovim
+-- starts, and pop it back off when Neovim exits. Supported by Ghostty,
+-- iTerm2, kitty, WezTerm and xterm (compiled with title-stack support).
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        io.write("\27[22;0t")
+    end,
+})
+
+vim.api.nvim_create_autocmd("VimLeave", {
+    callback = function()
+        io.write("\27[23;0t")
+    end,
+})
+
 -- Spell checking
 vim.o.spell = true
 vim.o.spelllang = "en_us,nl"
