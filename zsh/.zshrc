@@ -10,3 +10,7 @@ for file in "$HOME/.zshrc.d/os/$OS.zsh" "$HOME/.zshrc.d/"/*.zsh; do
 done
 
 
+
+# backpack:completion:start
+source "/Users/andre/.config/backpack/completion.zsh"
+# backpack:completion:end
