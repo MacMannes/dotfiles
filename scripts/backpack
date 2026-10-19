@@ -1,0 +1,3 @@
+#!/bin/sh
+# backpack CLI wrapper (npx @backpack/cli)
+exec npx @backpack/cli "$@"
