@@ -7,7 +7,8 @@ return {
             local linter = require("lint").linters["markdownlint-cli2"]
             if linter then
                 local fallback = vim.fn.stdpath("config") .. "/global.markdownlint-cli2.yaml"
-                linter.args = function()
+                -- nvim-lint requires `args` to be a list (entries may be functions).
+                local function config_path()
                     local found = vim.fs.find({
                         ".markdownlint-cli2.jsonc",
                         ".markdownlint-cli2.yaml",
@@ -17,11 +18,9 @@ return {
                         ".markdownlint.yaml",
                         ".markdownlint.yml",
                     }, { upward = true, path = vim.fn.expand("%:p:h") })[1]
-                    if found then
-                        return { "-" }
-                    end
-                    return { "--config", fallback, "-" }
+                    return found or fallback
                 end
+                linter.args = { "--config", config_path, "-" }
             end
         end,
     },
