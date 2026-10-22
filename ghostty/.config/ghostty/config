@@ -8,6 +8,7 @@ theme = jb-dark
 keybind = unconsumed:cmd+w=text:\x1bw 
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 keybind = global:cmd+F12=toggle_quick_terminal
+keybind = ctrl+q=unbind
 
 
 # Quick terminal appearance
