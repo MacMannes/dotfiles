@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# NS Android app debug helper (logcat)
+# Usage: nsdebug [flavor] [mode] [extra grep pattern]
+#   flavor: qa (default) | debug | prod
+#   mode:   all (default)   - everything from the app process
+#           errors          - warnings and errors only
+#           network         - OkHttp logging only
+#           parse           - serialization/parse failures
+#           crash           - crashes (AndroidRuntime)
+#           dump            - dump current buffer and exit (no follow)
+# Examples:
+#   nsdebug                    # follow qa app log
+#   nsdebug qa parse           # only serialization errors
+#   nsdebug qa network         # only HTTP calls
+#   nsdebug qa all "locations" # grep for extra pattern
+#
+# Tip: raw HTTP bodies are in Chucker (notification in the app), OkHttp logs only at BASIC level.
+
+set -euo pipefail
+
+flavor="${1:-qa}"
+mode="${2:-all}"
+extra="${3:-}"
+
+base="nl.ns.android.activity"
+case "$flavor" in
+    qa) package="$base.qa" ;;
+    debug) package="$base.debug" ;;
+    prod) package="$base" ;;
+    *) echo "Unknown flavor: $flavor (use qa|debug|prod)" >&2; exit 1 ;;
+esac
+
+command -v adb >/dev/null || { echo "adb not found" >&2; exit 1; }
+
+if ! adb get-state >/dev/null 2>&1; then
+    echo "No device/emulator connected (adb devices)" >&2
+    exit 1
+fi
+
+pid="$(adb shell pidof -s "$package" | tr -d '\r' || true)"
+if [[ -z "$pid" ]]; then
+    echo "$package is not running. Start the app first." >&2
+    exit 1
+fi
+
+echo "Package: $package (pid $pid), mode: $mode" >&2
+
+filter() {
+    case "$mode" in
+        all|dump) cat ;;
+        errors) cat ;;
+        network) grep --line-buffered -E "OkHttp" ;;
+        parse) grep --line-buffered -iE "Serialization|MissingField|NetworkException|JsonDecoding|is required for type" ;;
+        crash) grep --line-buffered -E "AndroidRuntime|FATAL" ;;
+        *) echo "Unknown mode: $mode" >&2; exit 1 ;;
+    esac
+}
+
+args=(--pid="$pid" -v color)
+[[ "$mode" == "errors" ]] && args+=("*:W")
+[[ "$mode" == "dump" ]] && args+=(-d)
+
+if [[ -n "$extra" ]]; then
+    adb logcat "${args[@]}" | filter | grep --line-buffered -iE "$extra"
+    exit 0
+fi
+
+adb logcat "${args[@]}" | filter
