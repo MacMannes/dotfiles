@@ -56,6 +56,29 @@ return {
   {
     "mason-org/mason.nvim",
     opts = { ensure_installed = { "kotlin-lsp", "kotlin-debug-adapter" } },
+    init = function()
+      -- kotlin-lsp builds expire, so keep it up to date automatically.
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "VeryLazy",
+        once = true,
+        callback = function()
+          local registry = require("mason-registry")
+          registry.update(function()
+            vim.schedule(function()
+              local package = registry.get_package("kotlin-lsp")
+              if not package:is_installed() then
+                return
+              end
+              if package:get_installed_version() == package:get_latest_version() then
+                return
+              end
+              vim.notify("Updating kotlin-lsp (old build expires)", vim.log.levels.INFO)
+              package:install()
+            end)
+          end)
+        end,
+      })
+    end,
   },
 
   -- Disable LazyVim's automatic kotlin_lsp setup (kotlin.nvim handles it as kotlin_ls)
