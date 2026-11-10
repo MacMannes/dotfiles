@@ -50,5 +50,5 @@ float({
 	name = "lazygit_float",
 	title = "Lazygit",
 	keywords = "git lazygit float",
-	command = { "lazygit" },
+	command = { "env", "XDG_CONFIG_HOME=" .. os.getenv("HOME") .. "/.config", "COLORTERM=truecolor", "lazygit" },
 })
