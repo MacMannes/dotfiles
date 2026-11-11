@@ -52,3 +52,11 @@ float({
 	keywords = "git lazygit float",
 	command = { "env", "XDG_CONFIG_HOME=" .. os.getenv("HOME") .. "/.config", "COLORTERM=truecolor", "lazygit" },
 })
+
+float({
+	name = "open_project",
+	title = "Open Project",
+	keywords = "project folder session open",
+	command = { scripts .. "open-project.sh" },
+	bounds = picker,
+})
