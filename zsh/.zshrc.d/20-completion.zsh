@@ -10,3 +10,5 @@ zstyle ':fzf-tab:*' fzf-flags --color=fg:4
 # tock completions
 source ~/.zshrc.d/custom/plugins/_tock
 
+# rex completions
+source <(rex completion zsh)
