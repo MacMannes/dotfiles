@@ -7,10 +7,11 @@ set -eu
 label=$(find "$HOME/Develop/NS" -mindepth 1 -maxdepth 2 -type d -not -name '.*' -not -path '*/posting-ns*' -not -path '*/Attic/*' |
     sed "s|^$HOME|~|" | sort | fzf --prompt 'Project: ') || exit 0
 dir="$HOME${label#\~}"
+name="${dir:t}"
 
-session=$(rex ls --json | jq -r --arg label "$label" '[.sessions[] | select(.label == $label)][0].session_id // empty')
+session=$(rex ls --json | jq -r --arg label "$name" '[.sessions[] | select(.label == $label)][0].session_id // empty')
 if [ -z "$session" ]; then
-    session=$(rex new "$label" -c "$dir" --json | jq -r '.session_id')
+    session=$(rex new "$name" -c "$dir" --json | jq -r '.session_id')
 fi
 
-"$(dirname "$0")/select-session.sh" "$session" "$label"
+"$(dirname "$0")/select-session.sh" "$session" "$name"
