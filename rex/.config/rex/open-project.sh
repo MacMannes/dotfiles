@@ -3,6 +3,7 @@
 # the session first if it isn't open. Run by the "Open Project" palette action.
 # zsh rather than sh so fzf picks up FZF_DEFAULT_OPTS from .zshenv.
 set -eu
+export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 
 label=$(find "$HOME/Develop/NS" -mindepth 1 -maxdepth 2 -type d -not -name '.*' -not -path '*/posting-ns*' -not -path '*/Attic/*' |
     sed "s|^$HOME|~|" | sort | fzf --prompt 'Project: ') || exit 0
