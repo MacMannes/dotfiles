@@ -56,7 +56,7 @@ float({
 	name = "lazygit_float",
 	title = "Lazygit",
 	keywords = "git lazygit float",
-	command = { "env", "XDG_CONFIG_HOME=" .. os.getenv("HOME") .. "/.config", "COLORTERM=truecolor", "/opt/homebrew/bin/lazygit" },
+	command = { "env", "XDG_CONFIG_HOME=" .. os.getenv("HOME") .. "/.config", "COLORTERM=truecolor", "PATH=/opt/homebrew/bin:/usr/local/bin:" .. os.getenv("PATH") or "/usr/bin:/bin", "/opt/homebrew/bin/lazygit" },
 })
 
 float({
