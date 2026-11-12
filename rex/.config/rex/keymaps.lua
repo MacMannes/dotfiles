@@ -5,3 +5,4 @@ rex.bind("cmd+right", "client.tab.next")
 
 rex.bind("cmd+g", "lazygit_float")
 rex.bind("cmd+p", "open_project")
+rex.bind("cmd+option+s", "scratch_float")

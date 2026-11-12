@@ -47,6 +47,12 @@ local picker = { 0.25, 0.2, 0.5, 0.5 }
 local prompt = { 0.3, 0.4, 0.4, 0.2 }
 
 float({
+	name = "scratch_float",
+	title = "Scratch Terminal",
+	keywords = "scratch terminal float",
+})
+
+float({
 	name = "lazygit_float",
 	title = "Lazygit",
 	keywords = "git lazygit float",
