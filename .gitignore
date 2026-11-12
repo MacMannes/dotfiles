@@ -3,3 +3,5 @@
 karabiner/.config/karabiner/automatic_backups
 /pi/.pi/agent/sessions/
 /pi/.pi/agent/auth.json
+/pi/.pi/agent/install
+/pi/.pi/agent/bin
