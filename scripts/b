@@ -15,7 +15,10 @@
 # ============================================================================
 BOOKMARKS=(
     "aws=AWS SSO|https://ns-sso.awsapps.com/start#/"
-    "azure=Azure DevOps|https://dev.azure.com/ns-topaas/NSAPP/_git"
+    "git=Azure DevOps - Git Repos|https://dev.azure.com/ns-topaas/NSAPP/_git"
+    "pipelines=Azure DevOps - Pipelines|https://dev.azure.com/ns-topaas/NSAPP/_build?definitionScope=%5CTeam%20Plannen"
+    "sprints=Azure DevOps - Sprints|https://dev.azure.com/ns-topaas/RCREIZ/_sprints/taskboard/DEVPLANNEN/RCREIZ"
+    "backlog=Azure DevOps - My Backlog Items|https://dev.azure.com/ns-topaas/RCREIZ/_queries/query/ef7147ea-624c-4436-a841-fbae6dbd2116/"
     "datadog=Datadog|https://app.datadoghq.eu/apm/home"
     "jira=JIRA|https://ns-topaas.atlassian.net/jira/software/c/projects/NSAPP/boards/550?quickFilter=10581"
     "confluence=Confluence|https://ns-topaas.atlassian.net/wiki/spaces/MLAB/pages/153026795/Backend+Applications+API+s"
@@ -128,7 +131,7 @@ build_list() {
         local key="${entry%%=*}"
         local info="${entry#*=}"
         local name="${info%%|*}"
-        printf "%-20s  %s\t%s\n" "$key" "$name" "$key"
+        printf "%-20s\t%s\t%s\n" "$key" "$name" "$key"
     done
 }
 
@@ -142,14 +145,15 @@ select_interactive() {
         --layout=reverse \
         --border=rounded \
         --prompt "Bookmark> " \
-        --with-nth 1 \
+        --with-nth 1,2 \
+        --nth 2 \
         --delimiter $'\t' \
         --ansi)
 
     [[ -z "$choice" ]] && exit 0
 
     local key
-    key=$(echo "$choice" | cut -f2)
+    key=$(echo "$choice" | cut -f3)
     local info
     info=$(get_bookmark "$key")
     open_bookmark "${info%%|*}" "${info#*|}"
@@ -202,12 +206,12 @@ if [[ -n "$info" ]]; then
 fi
 
 # 2. Fuzzy: collect how many lines fzf would match
-matches=$(build_list | fzf --filter "$query" --with-nth 1 --delimiter $'\t')
+matches=$(build_list | fzf --filter "$query" --with-nth 1,2 --nth 2 --delimiter $'\t')
 match_count=$(echo "$matches" | grep -c .)
 
 if [[ $match_count -eq 1 ]]; then
     # Single fuzzy match → open directly
-    key=$(echo "$matches" | cut -f2)
+    key=$(echo "$matches" | cut -f3)
     info=$(get_bookmark "$key")
     open_bookmark "${info%%|*}" "${info#*|}"
 elif [[ $match_count -eq 0 ]]; then
