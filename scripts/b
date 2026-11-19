@@ -15,10 +15,11 @@
 # ============================================================================
 BOOKMARKS=(
     "aws=AWS SSO|https://ns-sso.awsapps.com/start#/"
-    "git=Azure DevOps - Git Repos|https://dev.azure.com/ns-topaas/NSAPP/_git"
-    "pipelines=Azure DevOps - Pipelines|https://dev.azure.com/ns-topaas/NSAPP/_build?definitionScope=%5CTeam%20Plannen"
-    "sprints=Azure DevOps - Sprints|https://dev.azure.com/ns-topaas/RCREIZ/_sprints/taskboard/DEVPLANNEN/RCREIZ"
-    "backlog=Azure DevOps - My Backlog Items|https://dev.azure.com/ns-topaas/RCREIZ/_queries/query/ef7147ea-624c-4436-a841-fbae6dbd2116/"
+    "git=ADO - Git Repos|https://dev.azure.com/ns-topaas/NSAPP/_git"
+    "pipelines=ADO - Pipelines|https://dev.azure.com/ns-topaas/NSAPP/_build?definitionScope=%5CTeam%20Plannen"
+    "sprints=ADO - Sprints|https://dev.azure.com/ns-topaas/RCREIZ/_sprints/taskboard/DEVPLANNEN/RCREIZ"
+    "backlog=ADO - My Backlog Items|https://dev.azure.com/ns-topaas/RCREIZ/_queries/query/ef7147ea-624c-4436-a841-fbae6dbd2116/"
+    "kanban=ADO - My Kanban Board|https://dev.azure.com/ns-topaas/RCREIZ/_boards/board/t/DEVPLANNEN/Stories?System.IterationPath=%40currentIteration&System.AssignedTo=%40me"
     "datadog=Datadog|https://app.datadoghq.eu/apm/home"
     "jira=JIRA|https://ns-topaas.atlassian.net/jira/software/c/projects/NSAPP/boards/550?quickFilter=10581"
     "confluence=Confluence|https://ns-topaas.atlassian.net/wiki/spaces/MLAB/pages/153026795/Backend+Applications+API+s"
