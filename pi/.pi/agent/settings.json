@@ -6,11 +6,15 @@
   "theme": "opencode-custom",
   "packages": [
     "npm:pi-opencode-theme",
-    "npm:pi-account-switcher"
+    "npm:pi-account-switcher",
+    "npm:@ghoseb/pi-askuserquestion"
   ],
   "editorPaddingX": 2,
   "skills": [
     "~/.pi-private-skills"
   ],
-  "hideThinkingBlock": true
+  "hideThinkingBlock": true,
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:@ghoseb/pi-askuserquestion\",\"scope\":\"user\"}": "1.0.1"
+  }
 }
