@@ -15,7 +15,7 @@
 # ============================================================================
 BOOKMARKS=(
     "aws=AWS SSO|https://ns-sso.awsapps.com/start#/"
-    "git=ADO - Git Repos|https://dev.azure.com/ns-topaas/NSAPP/_git"
+    "repos=ADO - Git Repos|https://dev.azure.com/ns-topaas/NSAPP/_git"
     "pipelines=ADO - Pipelines|https://dev.azure.com/ns-topaas/NSAPP/_build?definitionScope=%5CTeam%20Plannen"
     "sprints=ADO - Sprints|https://dev.azure.com/ns-topaas/RCREIZ/_sprints/taskboard/DEVPLANNEN/RCREIZ"
     "backlog=ADO - My Backlog Items|https://dev.azure.com/ns-topaas/RCREIZ/_queries/query/ef7147ea-624c-4436-a841-fbae6dbd2116/"
