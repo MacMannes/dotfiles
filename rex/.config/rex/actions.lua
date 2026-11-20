@@ -50,6 +50,7 @@ float({
 	name = "scratch_float",
 	title = "Scratch Terminal",
 	keywords = "scratch terminal float",
+	command = { "env", "REX_SCRATCH=1", os.getenv("SHELL") or "/bin/zsh", "-l" },
 })
 
 float({
