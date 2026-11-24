@@ -126,6 +126,31 @@ open_repo() {
     open_bookmark "$repo_name" "$url"
 }
 
+# Resolve a bookmark URL; "pipelines" becomes a repo-specific search when inside an ADO repo
+resolve_url() {
+    local key="$1"
+    local url="$2"
+    [[ "$key" != "pipelines" ]] && { echo "$url"; return; }
+
+    local root remote repo_url
+    root=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "$url"; return; }
+    remote=$(git remote get-url origin 2>/dev/null) || { echo "$url"; return; }
+    repo_url=$(remote_to_url "$remote") || { echo "$url"; return; }
+
+    if [[ "$repo_url" =~ ^(https://dev\.azure\.com/[^/]+/[^/]+)/_git/ ]]; then
+        echo "${BASH_REMATCH[1]}/_build?pipelineNameFilter=$(basename "$root")"
+        return
+    fi
+    echo "$url"
+}
+
+open_key() {
+    local key="$1"
+    local info
+    info=$(get_bookmark "$key")
+    open_bookmark "${info%%|*}" "$(resolve_url "$key" "${info#*|}")"
+}
+
 # Build display list: "key   Display Name\tkey" (key hidden after tab for extraction)
 build_list() {
     for entry in "${BOOKMARKS[@]}"; do
@@ -155,9 +180,7 @@ select_interactive() {
 
     local key
     key=$(echo "$choice" | cut -f3)
-    local info
-    info=$(get_bookmark "$key")
-    open_bookmark "${info%%|*}" "${info#*|}"
+    open_key "$key"
 }
 
 # ============================================================================
@@ -171,6 +194,7 @@ if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
     echo ""
     echo "  b            Interactive fzf picker"
     echo "  b repo       Open current git repo (GitHub / Azure DevOps) in Safari"
+    echo "  b pipelines  In an ADO repo: search pipelines by repo name; else default link"
     echo "  b <key>      Open directly by exact key"
     echo "  b <query>    Fuzzy-filter fzf; auto-opens if single match"
     echo ""
@@ -202,7 +226,7 @@ fi
 # 1. Exact key match → open immediately
 info=$(get_bookmark "$query")
 if [[ -n "$info" ]]; then
-    open_bookmark "${info%%|*}" "${info#*|}"
+    open_key "$query"
     exit 0
 fi
 
@@ -213,8 +237,7 @@ match_count=$(echo "$matches" | grep -c .)
 if [[ $match_count -eq 1 ]]; then
     # Single fuzzy match → open directly
     key=$(echo "$matches" | cut -f3)
-    info=$(get_bookmark "$key")
-    open_bookmark "${info%%|*}" "${info#*|}"
+    open_key "$key"
 elif [[ $match_count -eq 0 ]]; then
     echo "No bookmarks match '$query'" >&2
     exit 1
