@@ -103,8 +103,8 @@ open_repo() {
     local root
     root=$(git rev-parse --show-toplevel 2>/dev/null)
     if [[ -z "$root" ]]; then
-        echo "Error: not inside a git repository" >&2
-        exit 1
+        open_key "repos"
+        exit 0
     fi
 
     local remote
