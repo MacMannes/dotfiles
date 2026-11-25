@@ -3,6 +3,7 @@
   "defaultProvider": "github-copilot",
   "defaultModel": "claude-sonnet-5.5",
   "defaultThinkingLevel": "medium",
+  "defaultTools": ["+codemode"],
   "theme": "opencode-custom",
   "packages": [
     "npm:pi-opencode-theme",
