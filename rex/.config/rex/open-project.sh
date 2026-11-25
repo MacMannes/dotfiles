@@ -5,8 +5,13 @@
 set -eu
 export PATH="/opt/homebrew/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 
-label=$(find "$HOME/Develop/NS" -mindepth 1 -maxdepth 2 -type d -not -name '.*' -not -path '*/posting-ns*' -not -path '*/Attic/*' |
-    sed "s|^$HOME|~|" | sort | fzf --prompt 'Project: ') || exit 0
+roots=()
+for root in "$HOME/Develop/NS" "$HOME/Develop/MacMannes"; do
+    [ -d "$root" ] && roots+=("$root")
+done
+
+label=$(find "${roots[@]}" -mindepth 1 -maxdepth 2 -type d -not -name '.*' -not -path '*/posting-ns*' -not -path '*/Attic/*' -not -path '*/node_modules*' 2>/dev/null |
+    sed "s|^$HOME|~|" | sort -u | fzf --prompt 'Project: ') || exit 0
 dir="$HOME${label#\~}"
 name="${dir:t}"
 

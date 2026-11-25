@@ -1,12 +1,16 @@
 #!/bin/sh
-# Switch the Rex app this float was opened from to a session. Rex only allows
-# this with Remote Control on (Settings > Rex Server), so fall back to a hint.
-# Usage: select-session.sh <session-id> <label>
-set -eu
+# Switch every Rex app attached to this float's session (local or remote, e.g.
+# over Tailscale) to a session. Usage: select-session.sh <session-id> <label>
+set -u
 
-client=$(rex api call session.list_clients "{\"session_id\":\"$REX_SESSION\"}" |
-    jq -r '[.clients[] | select(.info.kind == "app")][0].client_id')
-if ! rex -C "$client" do session.select session_id="$1" >/dev/null 2>&1; then
-    printf '\nOpened session "%s".\nTurn on Remote Control in Rex Settings > Rex Server to switch to it automatically.\nPress Return to close.' "$2"
+clients=$(rex api call session.list_clients "{\"session_id\":\"$REX_SESSION\"}" |
+    jq -r '.clients[] | select(.info.kind == "app") | .client_id')
+failures=""
+for client in $clients; do
+    error=$(rex -C "$client" do session.select session_id="$1" 2>&1) ||
+        failures="$failures\n$client: $error"
+done
+if [ -n "$failures" ]; then
+    printf '\nCould not switch to "%s":%b\nPress Return to close.' "$2" "$failures"
     read -r _
 fi
