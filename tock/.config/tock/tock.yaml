@@ -1,6 +1,7 @@
 backend: file
 calendar:
     time_end_format: '  15:04'
+    upcoming_days: 7
 check_updates: true
 export:
     ical:
@@ -8,7 +9,14 @@ export:
 file:
     path: /Users/andre/OneDrive - NS/.tock.txt
 language: eng
-last_update_check: 2026-11-16T13:37:44.693737+01:00
+last_update_check: 2026-11-23T14:51:28.231233+01:00
+mcp:
+    disabled_tools: []
+    enabled: false
+    read_only: false
+reminders:
+    notifications: true
+    snooze: 10m
 sqlite:
     path: /Users/andre/.tock.db
 time_format: "24"
