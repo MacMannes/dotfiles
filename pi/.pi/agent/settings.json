@@ -1,3 +1,16 @@
 {
-  "lastChangelogVersion": "1.6.1"
+  "lastChangelogVersion": "1.6.1",
+  "theme": "system",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "claude-sonnet-5.5",
+  "packages": [
+    "npm:pi-opencode-theme",
+    "npm:pi-account-switcher",
+    "npm:@ghoseb/pi-askuserquestion",
+    "npm:@narumitw/pi-usage"
+  ],
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:@ghoseb/pi-askuserquestion\",\"scope\":\"user\"}": "1.0.1",
+    "{\"source\":\"npm:@narumitw/pi-usage\",\"scope\":\"user\"}": "0.70.0"
+  }
 }
