@@ -8,7 +8,7 @@ description: Create a git branch from an Azure Boards work item ID. Use whenever
 When the user asks to create a branch for a work item (e.g., `AB#12345` or `12345`), follow these steps:
 
 1. **Fetch work item details.**
-   - Call the Azure DevOps MCP `work-items` tool (via codemode, server `mcp__azure_devops`) to retrieve the work item's **Type** (`User Story`, `Bug`, etc.) and **Title**.
+   - Call the Azure DevOps MCP `work-items` tool (via codemode, server `mcp__azure_devops`) with `project: "RCREIZ"` (work items always live in RCREIZ, not the project from the git remote) to retrieve the work item's **Type** (`User Story`, `Bug`, etc.) and **Title**.
 
 2. **Format the branch name.**
    - Map the work item type to a prefix:

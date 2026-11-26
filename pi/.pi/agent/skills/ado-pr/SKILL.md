@@ -11,9 +11,9 @@ Before calling any Azure DevOps MCP write tool to create a pull request, follow 
    - Check the current git branch name, status, and recent commits (`git status`, `git log <target>..HEAD`).
    - Extract the user story / work item ID from the branch name or commit messages (e.g. `feature/1234-login` -> `1234`, `AB#1234` in a commit body).
    - Check whether a PR template exists (`.azuredevops/pull_request_template.md`, also try `.azure/` and `docs/`).
-   - Parse `git remote -v` for the Azure DevOps organization, project and repository name (e.g. `https://dev.azure.com/<org>/<project>/_git/<repo>`).
+   - Parse `git remote -v` for the Azure DevOps organization, **repository project** and repository name (e.g. `https://dev.azure.com/<org>/<project>/_git/<repo>`). Note: the repository project (e.g. `NSAPP`) differs from the **work item project**, which is always `RCREIZ`. Use the repository project for repo/PR calls and `RCREIZ` for work item calls.
    - If the branch is not pushed yet (or is behind its remote), note it; it must be pushed before the PR is created.
-   - Fetch the work item (Azure DevOps MCP `wit_work_item`, action `get`, via codemode, server `mcp__azure_devops`) to get its Title and Type for the description.
+   - Fetch the work item (Azure DevOps MCP `wit_work_item`, action `get`, `project: "RCREIZ"`, via codemode, server `mcp__azure_devops`) to get its Title and Type for the description.
 
 2. **Ask the user before creating.**
    Use a **single** `ask_user_question` call with defaults the user can accept or change. Put the recommended option first in each question (each question needs at least 2 options):
@@ -26,10 +26,10 @@ Before calling any Azure DevOps MCP write tool to create a pull request, follow 
    - Call out a dirty working directory or unpushed commits explicitly.
 
 3. **Format strictly before creating.**
-   - **PR Title:** `<type>: <short description> (#<story-id>)`
+   - **PR Title:** `<type>: <short description> (AB#<story-id>)`
      - Strip bracketed prefixes/tags from the work item title (e.g. `[autosuggest]`); they only name the related API and must not appear in the title.
      - Write the description in lowercase imperative, based on the commits and work item title.
-     - *Example:* `feat: add missing bus-stop types in subTitle (#1234)`
+     - *Example:* `feat: add missing bus-stop types in subTitle (AB#1234)`
    - **PR Description:**
      - Include `AB#<story-id>` near the top (e.g. `Resolves AB#1234`) so Azure DevOps auto-links the work item. Always put a blank line directly under the `Resolves AB#<story-id>` line, before the rest of the description.
      - Follow the repo PR template if one exists; otherwise include only a short summary (what and why, from the commits). Do not add a list of changes or testing notes.
@@ -37,5 +37,5 @@ Before calling any Azure DevOps MCP write tool to create a pull request, follow 
 
 4. **Execute & Verify.**
    - If requested, run `git push -u origin <branch>` first.
-   - After the user confirms, call the Azure DevOps MCP `repo_pull_request_write` (action `create`, via codemode) with the source branch, target branch, title, description, draft flag, and the work item ID so it is explicitly linked. If the create call does not link the work item, link it with `wit_work_item_link_write` (action `link_to_pull_request`).
+   - After the user confirms, call the Azure DevOps MCP `repo_pull_request_write` (action `create`, via codemode) with the source branch, target branch, title, description, draft flag, and the work item ID so it is explicitly linked. If the create call does not link the work item, link it with `wit_work_item_link_write` (action `link_to_pull_request`), passing the work item project `RCREIZ` for the work item and the repository project (from the remote) for the PR.
    - Return the created PR URL (`https://dev.azure.com/<org>/<project>/_git/<repo>/pullrequest/<id>`).
